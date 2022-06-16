@@ -188,18 +188,19 @@ def go_infrastructure():
 		# time.sleep(1.5)
 
 	print("ArknightsController:Check Blue Notification  ....")
-	re = adb_controller.wait_to_match_and_click([r"template_images\infrastructure5.png"],[0.1],True,5,3,settings.accidents)
+	re = adb_controller.wait_to_match_and_click([r"template_images\infrastructure5.png"],[0.05],True,5,3,settings.accidents)
+	# re = adb_controller.wait_to_match_and_click([r"template_images\infrastructure5.png"],[0.05],True,5,3)
 	time.sleep(1)
 	if(re == "success"):
 		print("ArknightsController:Collect Trust  ....")
-		re = adb_controller.wait_to_match_and_click([r"template_images\infrastructure6.png"],[0.1],True,5,2,settings.accidents)
+		re = adb_controller.wait_to_match_and_click([r"template_images\infrastructure6.png"],[0.05],True,5,2,settings.accidents)
 		print("ArknightsController:Collect Goods ....")
-		re = adb_controller.wait_to_match_and_click([r"template_images\yellow_infra.png"],[0.1],True,5,2,settings.accidents)
+		re = adb_controller.wait_to_match_and_click([r"template_images\yellow_infra.png"],[0.05],True,5,2,settings.accidents)
 		time.sleep(1)
-		re = adb_controller.wait_to_match_and_click([r"template_images\blue_infra.png"],[0.1],True,5,2,settings.accidents)
+		re = adb_controller.wait_to_match_and_click([r"template_images\blue_infra.png"],[0.05],True,5,2,settings.accidents)
 		time.sleep(2)
 		#replaced by go drone
-		go_drone_inside()
+	
 		# re = adb_controller.click([400,200])
 		#replaced
 		time.sleep(1)
@@ -212,10 +213,14 @@ def go_infrastructure():
 		# time.sleep(10)
 	else:
 		print("ArknightsController:Do not find Blue Notification  ....")
+		adb_controller.click([150,410])
+		time.sleep(1)
+		re = go_drone_inside()
 
 	print("ArknightsController:Change the Crew  ....")
 	re  = adb_controller.wait_to_match_and_click([r"template_images\infrastructure8.png"],[0.1],True,10,1,accidents = settings.accidents)
 	time.sleep(2)
+
 
 	#remove first row to preserve 永动车
 	adb_controller.swipe((1000,600),(1000,450),2000)
@@ -489,6 +494,25 @@ def go_shop():
 			else:
 				break
 
+			#4
+			if int(image_processor.easyocr_read(settings.screenshot_path, True, scope = (20,60,1165,1200))[0][1]) > 300:
+				adb_controller.click([360,520])
+				re = adb_controller.wait_to_match_and_click([r"template_images\shop6.png"],[0.1],True,5,2,settings.accidents)
+				re = adb_controller.wait_to_match_and_click([r"template_images\shop7.png"],[0.1],True,5,2,settings.accidents)
+				time.sleep(1)
+			else:
+				break
+
+
+			if int(image_processor.easyocr_read(settings.screenshot_path, True, scope = (20,60,1165,1200))[0][1]) > 300:
+				adb_controller.click([140,520])
+				re = adb_controller.wait_to_match_and_click([r"template_images\shop6.png"],[0.1],True,5,2,settings.accidents)
+				re = adb_controller.wait_to_match_and_click([r"template_images\shop7.png"],[0.1],True,5,2,settings.accidents)
+				time.sleep(1)
+			else:
+				break	
+			break		
+
 			# if(re == "success"):
 			# 	adb_controller.click([880,520])
 			# 	re = adb_controller.wait_to_match_and_click([r"template_images\shop6.png"],[0.1],True,5,2,settings.accidents)
@@ -586,6 +610,7 @@ def go_hire_crew():
 					print(best_combination)
 			if best_combination != []:
 				adb_controller.wait_till_match_any_text_and_click(best_combination,3,1,scope = (367,500,338,900))
+
 			else:
 				for i in less_priority_list:
 					if set(i).issubset(five_hire_tags):
@@ -617,6 +642,7 @@ def go_hire_crew():
 					time.sleep(1)
 					re2  = adb_controller.wait_to_match_and_click(
 				[r"template_images\back.png"],[0.1],True,10,2,settings.accidents)
+					time.sleep(5)
 					continue
 					#click refresh, and restart the loop
 
@@ -624,6 +650,7 @@ def go_hire_crew():
 			# end of new logic
 			re2  = adb_controller.wait_to_match_and_click(
 				[r"template_images\hire7.png"],[0.1],True,5,2,settings.accidents)
+			time.sleep(5)
 		else:
 			break
 
@@ -825,7 +852,7 @@ def go_drone_inside():
 	# if(re != "success"):
 	# 	return "end"
 
-	print("ArknightsController:Finished to Go Clue  ....")
+	print("ArknightsController:Finished to speed up drones  ....")
 	return "success"
 
 	

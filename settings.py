@@ -43,7 +43,7 @@ accidents = {
 					r"template_images\accident_shop_tip1.png",
 					r"template_images\accident_gift2.png"
 					],
-			"thresholds":[0.05,0.05,0.05,0.05,0.05,0.05,0.05,0.05,0.05],
+			"thresholds":[0.03,0.03,0.03,0.03,0.03,0.03,0.03,0.03,0.03],
 			"methods":["click","click","restart","click","click","restart","restart","click","click"],
 			"click_offset":[None,None,None,None,None,None,None,(0,-100),None]
 			}
