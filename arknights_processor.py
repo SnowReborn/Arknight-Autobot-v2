@@ -200,7 +200,7 @@ def go_infrastructure():
 		re = adb_controller.wait_to_match_and_click([r"template_images\blue_infra.png"],[0.05],True,5,2,settings.accidents)
 		time.sleep(2)
 		#replaced by go drone
-	
+		re = go_drone_inside()
 		# re = adb_controller.click([400,200])
 		#replaced
 		time.sleep(1)
@@ -288,7 +288,7 @@ def go_infrastructure():
 						,r"template_images\infrastructure16_3.png"
 						,r"template_images\infrastructure16_4.png"
 						,r"template_images\infrastructure16_5.png"]
-						,[0.1,0.1,0.1,0.1,0.1],True,1,1,scope = (
+						,[0.05,0.05,0.05,0.05,0.05],True,1,1,scope = (
 							crew_rects["up_left_loc"][rect_index][1]
 							,crew_rects["up_left_loc"][rect_index][1] + crew_rects["height"]
 							,crew_rects["up_left_loc"][rect_index][0]
@@ -333,7 +333,8 @@ def go_visit_friends():
 	if(re == "restart"):return re
 
 	visit_times = 1
-	while(visit_times < 13) and adb_controller.wait_till_match_any([r"template_images\friends_orange.png"],[0.1],True,5,2,settings.accidents):
+	# while(visit_times < 13) and adb_controller.wait_till_match_any([r"template_images\friends_orange.png"],[0.1],True,10,2,settings.accidents):
+	while not((visit_times > 12) or adb_controller.wait_till_match_any([r"template_images\friends4.png"],[0.1],True,5,2,settings.accidents)):
 		# re  = adb_controller.wait_to_match_and_click([r"template_images\friends_orange.png"],[0.1],True,20,2,settings.accidents)
 		adb_controller.click((1174,632))
 		time.sleep(2)
@@ -405,35 +406,36 @@ def go_shop():
 	
 
 	while(True):
-		re  = adb_controller.wait_to_match_and_click([r"template_images\99discount.png"],[0.005],True,2,2,settings.accidents)
-		if(re == "success"):
+		while (adb_controller.wait_to_match_and_click([r"template_images\99discount.png"],[0.005],True,5,2,settings.accidents) == "success"):
+		# re  = adb_controller.wait_to_match_and_click([r"template_images\99discount.png"],[0.005],True,2,2,settings.accidents)
+		# if(re == "success"):
 			adb_controller.wait_to_match_and_click([r"template_images\shop6.png"],[0.1],True,5,2,settings.accidents)
 			time.sleep(2)
 			adb_controller.wait_to_match_and_click([r"template_images\shop7.png"],[0.1],True,5,2,settings.accidents)
-			continue
-		
-		re  = adb_controller.wait_to_match_and_click([r"template_images\75discount.png"],[0.005],True,2,2,settings.accidents)
-		if(re == "success"):
+			
+		while (adb_controller.wait_to_match_and_click([r"template_images\75discount.png"],[0.005],True,5,2,settings.accidents) == "success"):
+		# re  = adb_controller.wait_to_match_and_click([r"template_images\75discount.png"],[0.005],True,2,2,settings.accidents)
+		# if(re == "success"):
 			adb_controller.wait_to_match_and_click([r"template_images\shop6.png"],[0.1],True,5,2,settings.accidents)
 			time.sleep(2)
 			adb_controller.wait_to_match_and_click([r"template_images\shop7.png"],[0.1],True,5,2,settings.accidents)
-			continue
+			
 		
 
-		re  = adb_controller.wait_to_match_and_click([r"template_images\red_card.png"],[0.1],True,2,2,settings.accidents)
-		if(re == "success"):
+		while (adb_controller.wait_to_match_and_click([r"template_images\red_card.png"],[0.1],True,5,2,settings.accidents) == "success"):
+		# if(re == "success"):
 			adb_controller.wait_to_match_and_click([r"template_images\shop6.png"],[0.1],True,5,2,settings.accidents)
 			time.sleep(2)
 			adb_controller.wait_to_match_and_click([r"template_images\shop7.png"],[0.1],True,5,2,settings.accidents)
-			continue
+			# continue
 	
-
-		re  = adb_controller.wait_to_match_and_click([r"template_images\hire_card.png"],[0.1],True,2,2,settings.accidents)
-		if(re == "success"):
+		while (adb_controller.wait_to_match_and_click([r"template_images\hire_card.png"],[0.1],True,5,2,settings.accidents) == "success"):
+		# re  = adb_controller.wait_to_match_and_click([r"template_images\hire_card.png"],[0.1],True,2,2,settings.accidents)
+		# if(re == "success"):
 			adb_controller.wait_to_match_and_click([r"template_images\shop6.png"],[0.1],True,5,2,settings.accidents)
 			time.sleep(2)
 			adb_controller.wait_to_match_and_click([r"template_images\shop7.png"],[0.1],True,5,2,settings.accidents)
-			continue
+			# continue
 	
 
 
@@ -582,7 +584,7 @@ def go_hire_crew():
 			,r"template_images\hire4_2.png"
 			,r"template_images\hire4_3.png"
 			,r"template_images\hire4_4.png"]
-			,[0.1,0.1,0.1,0.1],True,5,2,settings.accidents)
+			,[0.05,0.05,0.05,0.05],True,5,2,settings.accidents)
 		if(re == "success"):
 			time.sleep(2)
 			re2  = adb_controller.wait_to_match_and_click(
