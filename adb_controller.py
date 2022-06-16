@@ -43,6 +43,7 @@ def screenshot(path):
 
 def check_if_accidents(accidents):
 	
+	
 	print("AdbController:Check if any accidents : "+str(accidents["paths"]))
 	
 	for index in range(0,len(accidents["paths"])):

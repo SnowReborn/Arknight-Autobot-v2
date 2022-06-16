@@ -13,9 +13,9 @@ rem xcopy /y "D:\Code Base\Python Project\Arknight Autobot v2\settings.txt" "D:\
 rem xcopy /y "D:\Code Base\Python Project\Arknight Autobot v2\settings.txt" "D:\Code Base\Python Project\Multi Arkbot\bill\settings.txt"
 
 
-xcopy /y /e /h /i "D:\Code Base\Python Project\Arknight Autobot v2" "D:\Code Base\Python Project\Multi Arkbot\main"
-xcopy /y /e /h /i "D:\Code Base\Python Project\Arknight Autobot v2" "D:\Code Base\Python Project\Multi Arkbot\chenrui"
-xcopy /y /e /h /i "D:\Code Base\Python Project\Arknight Autobot v2" "D:\Code Base\Python Project\Multi Arkbot\connor"
-xcopy /y /e /h /i "D:\Code Base\Python Project\Arknight Autobot v2" "D:\Code Base\Python Project\Multi Arkbot\sam"
-xcopy /y /e /h /i "D:\Code Base\Python Project\Arknight Autobot v2" "D:\Code Base\Python Project\Multi Arkbot\math"
-xcopy /y /e /h /i "D:\Code Base\Python Project\Arknight Autobot v2" "D:\Code Base\Python Project\Multi Arkbot\bill"
+xcopy /y /e /h /i "E:\Code Base\Python Project\Arknight Autobot v2" "E:\Code Base\Python Project\Multi Arkbot\main"
+xcopy /y /e /h /i "E:\Code Base\Python Project\Arknight Autobot v2" "E:\Code Base\Python Project\Multi Arkbot\chenrui"
+xcopy /y /e /h /i "E:\Code Base\Python Project\Arknight Autobot v2" "E:\Code Base\Python Project\Multi Arkbot\connor"
+xcopy /y /e /h /i "E:\Code Base\Python Project\Arknight Autobot v2" "E:\Code Base\Python Project\Multi Arkbot\sam"
+xcopy /y /e /h /i "E:\Code Base\Python Project\Arknight Autobot v2" "E:\Code Base\Python Project\Multi Arkbot\math"
+xcopy /y /e /h /i "E:\Code Base\Python Project\Arknight Autobot v2" "E:\Code Base\Python Project\Multi Arkbot\bill"
