@@ -223,25 +223,34 @@ def go_infrastructure():
 
 
 	#remove first row to preserve 永动车
-	adb_controller.swipe((1000,600),(1000,450),2000)
+	adb_controller.swipe((1000,600),(1000,400),2000)
 	#Get Down
 	re  = adb_controller.wait_to_match_and_click([r"template_images\infrastructure9.png"],[0.1],True,10,1,accidents = settings.accidents)
 	while(True):#scoll
+		#revised instead of clicking each operator, lay off entire row
 		matched_locs = []
 		re = "success"
 		while(re == "success"):
-			re  = adb_controller.wait_to_match_and_click(
-				[r"template_images\infrastructure10.png"
-				,r"template_images\infrastructure11.png"
-				,r"template_images\infrastructure11_2.png"
-				,r"template_images\infrastructure11_3.png"
-				,r"template_images\infrastructure11_4.png"
-				]
-				,[0.1,0.1,0.1,0.1,0.1],False,5,1,accidents = settings.accidents
-				,click_offset = (-20,25),scope = (118,696,618,1226),except_locs = matched_locs)
-
+			re  = adb_controller.wait_to_match_and_click([r"template_images\layoff.png"],[0.1],False,2,1,scope =(120,720,1170,1235),accidents = settings.accidents,except_locs = matched_locs)
+			
 			if(image_processor.last_match_loc != None):
 				matched_locs.append(image_processor.last_match_loc)
+
+			# print(image_processor.last_match_loc, " matched: ",matched_locs)
+			if re != "success":
+				re  = adb_controller.wait_to_match_and_click([r"template_images\red_confirm1.png"],[0.1],True,1,2,settings.accidents)
+			time.sleep(3)
+			# re  = adb_controller.wait_to_match_and_click(
+			# 	[r"template_images\infrastructure10.png"
+			# 	,r"template_images\infrastructure11.png"
+			# 	,r"template_images\infrastructure11_2.png"
+			# 	,r"template_images\infrastructure11_3.png"
+			# 	,r"template_images\infrastructure11_4.png"
+			# 	]
+			# 	,[0.1,0.1,0.1,0.1,0.1],False,5,1,accidents = settings.accidents
+			# 	,click_offset = (-20,25),scope = (118,696,618,1226),except_locs = matched_locs)
+
+			
 
 		adb_controller.screenshot(r"temp_screenshot\last_screenshot.png")
 		adb_controller.swipe((1000,600),(1000,100),2000)
@@ -252,6 +261,8 @@ def go_infrastructure():
 
 
 	print("ArknightsController:Finished Laying off the Crew  ....")
+
+
 	print("ArknightsController:Start to Station the Crew  ....")
 
 	print("ArknightsController:Get Out  ....")
@@ -313,6 +324,7 @@ def go_infrastructure():
 				time.sleep(1)
 
 		adb_controller.screenshot(r"temp_screenshot\last_screenshot.png")
+		time.sleep(4)
 		adb_controller.swipe((1000,600),(1000,150),2000)
 		time.sleep(1)
 		adb_controller.screenshot(r"temp_screenshot\screenshot.png")
@@ -638,12 +650,12 @@ def go_hire_crew():
 					adb_controller.wait_till_match_any_text_and_click(five_hire_tags,3,1,scope = (367,500,338,900))
 				else:
 					re2  = adb_controller.wait_to_match_and_click(
-				[r"template_images\refresh1.png"],[0.1],True,10,2,settings.accidents)
+				[r"template_images\refresh1.png"],[0.1],True,3,2,settings.accidents)
 					re2  = adb_controller.wait_to_match_and_click(
-				[r"template_images\red_confirm1.png"],[0.1],True,10,2,settings.accidents)
+				[r"template_images\red_confirm1.png"],[0.1],True,3,2,settings.accidents)
 					time.sleep(1)
-					re2  = adb_controller.wait_to_match_and_click(
-				[r"template_images\back.png"],[0.1],True,10,2,settings.accidents)
+				# 	re2  = adb_controller.wait_to_match_and_click(
+				# [r"template_images\back.png"],[0.1],True,10,2,settings.accidents)
 					time.sleep(5)
 					continue
 					#click refresh, and restart the loop
@@ -651,7 +663,7 @@ def go_hire_crew():
 
 			# end of new logic
 			re2  = adb_controller.wait_to_match_and_click(
-				[r"template_images\hire7.png"],[0.1],True,5,2,settings.accidents)
+				[r"template_images\hire7.png"],[0.1],True,2,2,settings.accidents)
 			time.sleep(5)
 		else:
 			break
@@ -821,36 +833,40 @@ def go_drone_inside():
 	# 	return "end"
 	time.sleep(5)
 	# re = adb_controller.click([300,600])
-	re  = adb_controller.wait_to_match_and_click([r"template_images\factory.png"],[0.1],True,20,1,settings.accidents)
+	re  = adb_controller.wait_to_match_and_click([r"template_images\factory.png"],[0.1],True,10,1,settings.accidents)
 	# if(re != "success"):
 	# 	return "end"
 	time.sleep(3)
 
-	re  = adb_controller.wait_to_match_and_click([r"template_images\yellow_drone_speed_up.png"],[0.1],True,20,1,settings.accidents)
+	re  = adb_controller.wait_to_match_and_click([r"template_images\yellow_drone_speed_up.png"],[0.1],True,5,1,settings.accidents)
 	# if(re != "success"):
 	# 	return "end"
 
-	re  = adb_controller.wait_till_match_any([r"template_images\drone7.png"],[0.01],True,4,1)
+	re  = adb_controller.wait_till_match_any([r"template_images\drone7.png"],[0.01],True,3,1)
 	# if(re != None):
 	# 	return "end"
 
-	re  = adb_controller.wait_to_match_and_click([r"template_images\drone4.png"],[0.1],True,20,1,settings.accidents)
+	re  = adb_controller.wait_to_match_and_click([r"template_images\drone4.png"],[0.1],True,3,1,settings.accidents)
 	# if(re != "success"):
 	# 	return "end"
+	if re=="success":
 
-	re  = adb_controller.wait_to_match_and_click([r"template_images\drone6.png"],[0.1],True,20,1,settings.accidents)
-	# if(re != "success"):
-	# 	return "end"
-	time.sleep(5)
-	re  = adb_controller.wait_to_match_and_click([r"template_images\recieve.png"],[0.1],True,20,1,settings.accidents)
-	# if(re != "success"):
-	# 	return "end"
-	time.sleep(10)
-	re  = adb_controller.wait_to_match_and_click([r"template_images\back.png"],[0.1],True,10,1,settings.accidents)
+		re  = adb_controller.wait_to_match_and_click([r"template_images\drone6.png"],[0.1],True,3,1,settings.accidents)
+		# if(re != "success"):
+		# 	return "end"
+		time.sleep(5)
+		re  = adb_controller.wait_to_match_and_click([r"template_images\recieve.png"],[0.1],True,5,1,settings.accidents)
+		# if(re != "success"):
+		# 	return "end"
+		time.sleep(10)
+	else:
+		print("Failed to boost, operator not in factory or already used all drones")
+
+	re  = adb_controller.wait_to_match_and_click([r"template_images\back.png"],[0.1],True,3,1,settings.accidents)
 	# if(re != "success"):
 	# 	return "end"
 	time.sleep(2)
-	re  = adb_controller.wait_to_match_and_click([r"template_images\back.png"],[0.1],True,10,1,settings.accidents)
+	re  = adb_controller.wait_to_match_and_click([r"template_images\back.png"],[0.1],True,3,1,settings.accidents)
 	# if(re != "success"):
 	# 	return "end"
 

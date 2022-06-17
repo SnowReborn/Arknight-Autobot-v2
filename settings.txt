@@ -23,17 +23,17 @@ bill_address = "127.0.0.1:21583" #bill
 
 
 
-to_do_list.append("go_visit_friends")  # 访问好友
+# to_do_list.append("go_visit_friends")  # 访问好友
 # to_do_list.append("go_clue")           # 处理会客室线索：上线索、足够后解锁线索、送多出2个的同种线索中一个、领新线索、。
-to_do_list.append("go_shop")           # 领取信用，自动买打折的商品
+# to_do_list.append("go_shop")           # 领取信用，自动买打折的商品
 
 
-# to_do_list.append("go_infrastructure") # 基建收货，收信赖，傻瓜式换人
+to_do_list.append("go_infrastructure") # 基建收货，收信赖，傻瓜式换人
 
 #to_do_list.append("go_drone")          # 使用无人机在贸易站加速订单
 
 
-to_do_list.append("go_collect_quests") # 领取任务奖励
+# to_do_list.append("go_collect_quests") # 领取任务奖励
 
 #to_do_list.append("go_level")          # 刷关卡，默认优先刷钱，没开的情况下刷经验,
 #to_do_list.append("go_collect_mail")   # 收邮件

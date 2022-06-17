@@ -13,6 +13,7 @@ last_match_loc = None
 def match_template(target_path,template_path,threshold = 0.05,return_center = True
 					,print_debug = True,scope = None,except_locs = None):
 
+	global last_match_loc
 	if(print_debug):
 		print("ImageProcessor: start to match "+target_path+" by "+template_path)
 
@@ -50,8 +51,9 @@ def match_template(target_path,template_path,threshold = 0.05,return_center = Tr
 	else:
 		if(print_debug):
 			print("ImageProcessor: match succeeded")
-
+	# print("this is min loc :", min_loc)
 	last_match_loc = min_loc
+	# print("this is last_match_loc : ", last_match_loc)
 
 	if(return_center):
 		min_loc = (min_loc[0] + twidth/2,min_loc[1] + theight/2)
@@ -59,6 +61,11 @@ def match_template(target_path,template_path,threshold = 0.05,return_center = Tr
 	if(scope != None):
 		min_loc = (min_loc[0] + scope[2],min_loc[1] + scope[0])
 
+	# print("this is min loc after if statement:", min_loc)
+	# print("this is last_match_loc after if statement : ", last_match_loc)	
+	# print("this is min loc :", min_loc)
+	# last_match_loc = min_loc
+	# print("this is last_match_loc : ", last_match_loc)
 	return min_loc
 
 
