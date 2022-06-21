@@ -298,11 +298,13 @@ def go_infrastructure():
 						,r"template_images\infrastructure16_2.png"
 						,r"template_images\infrastructure16_3.png"
 						,r"template_images\infrastructure16_4.png"
-						,r"template_images\infrastructure16_5.png"]
-						,[0.05,0.05,0.05,0.05,0.05],True,1,1,scope = (
-							crew_rects["up_left_loc"][rect_index][1]
+						,r"template_images\infrastructure16_5.png"
+						,r"template_images\infrastructure16_6.png"
+						,r"template_images\infrastructure16_7.png"]
+						,[0.05,0.05,0.05,0.05,0.02,0.1,0.1],True,1,1,scope = (
+							crew_rects["up_left_loc"][rect_index][1]-40
 							,crew_rects["up_left_loc"][rect_index][1] + crew_rects["height"]
-							,crew_rects["up_left_loc"][rect_index][0]
+							,crew_rects["up_left_loc"][rect_index][0]-40
 							,crew_rects["up_left_loc"][rect_index][0] + crew_rects["witdth"]
 							)
 						)
@@ -321,7 +323,7 @@ def go_infrastructure():
 					[r"template_images\infrastructure15.png"
 					,r"template_images\infrastructure15_2.png"
 					],[0.1,0.1],True,10,1,accidents = settings.accidents)
-				time.sleep(1)
+				time.sleep(4)
 
 		adb_controller.screenshot(r"temp_screenshot\last_screenshot.png")
 		time.sleep(4)
@@ -596,7 +598,7 @@ def go_hire_crew():
 			,r"template_images\hire4_2.png"
 			,r"template_images\hire4_3.png"
 			,r"template_images\hire4_4.png"]
-			,[0.05,0.05,0.05,0.05],True,5,2,settings.accidents)
+			,[0.05,0.05,0.05,0.05],True,10,2,settings.accidents)
 		if(re == "success"):
 			time.sleep(2)
 			re2  = adb_controller.wait_to_match_and_click(
@@ -653,10 +655,10 @@ def go_hire_crew():
 				[r"template_images\refresh1.png"],[0.1],True,3,2,settings.accidents)
 					re2  = adb_controller.wait_to_match_and_click(
 				[r"template_images\red_confirm1.png"],[0.1],True,3,2,settings.accidents)
+					time.sleep(3)
+					re2  = adb_controller.wait_to_match_and_click(
+				[r"template_images\back.png"],[0.1],True,10,2,settings.accidents)
 					time.sleep(1)
-				# 	re2  = adb_controller.wait_to_match_and_click(
-				# [r"template_images\back.png"],[0.1],True,10,2,settings.accidents)
-					time.sleep(5)
 					continue
 					#click refresh, and restart the loop
 
@@ -664,7 +666,7 @@ def go_hire_crew():
 			# end of new logic
 			re2  = adb_controller.wait_to_match_and_click(
 				[r"template_images\hire7.png"],[0.1],True,2,2,settings.accidents)
-			time.sleep(5)
+			time.sleep(7)
 		else:
 			break
 
@@ -754,6 +756,8 @@ def go_clue_get_new_clue():
 		if(re == "success"):
 			re  = adb_controller.wait_to_match_and_click([
 				r"template_images\gclue10.png",r"template_images\gclue10_1.png"],[0.1,0.1],True,10,2,settings.accidents)
+			time.sleep(5)
+			adb_controller.click([1,1])#go back to previous screen if needed
 		else:
 			break;
 
