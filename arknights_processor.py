@@ -884,7 +884,8 @@ def go_drone_inside():
 my_directory = os.path.basename(os.getcwd())
 
 
-settings_path = r"settings.txt"
+settings_path = r"E:\Code Base\Python Project\Arknight Autobot v2\settings.txt"
+# settings_path = r"settings.txt"
 
 add_string_vars = ["to_do_list","auto_t_level"]
 
