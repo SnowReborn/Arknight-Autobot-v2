@@ -426,6 +426,13 @@ def go_shop():
 			adb_controller.wait_to_match_and_click([r"template_images\shop6.png"],[0.1],True,5,2,settings.accidents)
 			time.sleep(2)
 			adb_controller.wait_to_match_and_click([r"template_images\shop7.png"],[0.1],True,5,2,settings.accidents)
+
+		while (adb_controller.wait_to_match_and_click([r"template_images\95discount.png"],[0.005],True,5,2,settings.accidents) == "success"):
+		# re  = adb_controller.wait_to_match_and_click([r"template_images\99discount.png"],[0.005],True,2,2,settings.accidents)
+		# if(re == "success"):
+			adb_controller.wait_to_match_and_click([r"template_images\shop6.png"],[0.1],True,5,2,settings.accidents)
+			time.sleep(2)
+			adb_controller.wait_to_match_and_click([r"template_images\shop7.png"],[0.1],True,5,2,settings.accidents)
 			
 		while (adb_controller.wait_to_match_and_click([r"template_images\75discount.png"],[0.005],True,5,2,settings.accidents) == "success"):
 		# re  = adb_controller.wait_to_match_and_click([r"template_images\75discount.png"],[0.005],True,2,2,settings.accidents)
@@ -454,7 +461,7 @@ def go_shop():
 
 
 
-		while int(image_processor.easyocr_read(settings.screenshot_path, True, scope = (20,60,1145,1200))[0][1]) > 300:
+		while int(image_processor.easyocr_read(settings.screenshot_path, True, scope = (20,60,1140,1200))[0][1]) > 300:
 			re  = adb_controller.wait_to_match_and_click([r"template_images\50discount.png"],[0.005],True,2,2,settings.accidents)
 			# re  = adb_controller.wait_to_match_and_click(
 			# 	[r"template_images\75discount.png",r"template_images\50discount.png"],[0.1,0.1],True,10,2,settings.accidents)
@@ -469,8 +476,10 @@ def go_shop():
 				break
 
 		time.sleep(1)
+
 		adb_controller.screenshot(settings.screenshot_path)
-		if int(image_processor.easyocr_read(settings.screenshot_path, True, scope = (20,60,1165,1200))[0][1]) > 300:
+
+		if int(image_processor.easyocr_read(settings.screenshot_path, True, scope = (20,60,1140,1200))[0][1]) > 300:
 			#doesn't seen to be working as OCR detects tags even already bought
 
 
@@ -493,7 +502,7 @@ def go_shop():
 			time.sleep(1)
 			adb_controller.screenshot(settings.screenshot_path)
 
-			if int(image_processor.easyocr_read(settings.screenshot_path, True, scope = (20,60,1165,1200))[0][1]) > 300:
+			if int(image_processor.easyocr_read(settings.screenshot_path, True, scope = (20,60,1140,1200))[0][1]) > 300:
 				adb_controller.click([880,520])
 				re = adb_controller.wait_to_match_and_click([r"template_images\shop6.png"],[0.1],True,5,2,settings.accidents)
 				re = adb_controller.wait_to_match_and_click([r"template_images\shop7.png"],[0.1],True,5,2,settings.accidents)
@@ -502,7 +511,7 @@ def go_shop():
 				break
 			time.sleep(3)
 
-			if int(image_processor.easyocr_read(settings.screenshot_path, True, scope = (20,60,1165,1200))[0][1]) > 300:
+			if int(image_processor.easyocr_read(settings.screenshot_path, True, scope = (20,60,1140,1200))[0][1]) > 300:
 				adb_controller.click([620,520])
 				re = adb_controller.wait_to_match_and_click([r"template_images\shop6.png"],[0.1],True,5,2,settings.accidents)
 				re = adb_controller.wait_to_match_and_click([r"template_images\shop7.png"],[0.1],True,5,2,settings.accidents)
@@ -511,7 +520,7 @@ def go_shop():
 				break
 
 			#4
-			if int(image_processor.easyocr_read(settings.screenshot_path, True, scope = (20,60,1165,1200))[0][1]) > 300:
+			if int(image_processor.easyocr_read(settings.screenshot_path, True, scope = (20,60,1140,1200))[0][1]) > 300:
 				adb_controller.click([360,520])
 				re = adb_controller.wait_to_match_and_click([r"template_images\shop6.png"],[0.1],True,5,2,settings.accidents)
 				re = adb_controller.wait_to_match_and_click([r"template_images\shop7.png"],[0.1],True,5,2,settings.accidents)
@@ -520,7 +529,7 @@ def go_shop():
 				break
 
 
-			if int(image_processor.easyocr_read(settings.screenshot_path, True, scope = (20,60,1165,1200))[0][1]) > 300:
+			if int(image_processor.easyocr_read(settings.screenshot_path, True, scope = (20,60,1140,1200))[0][1]) > 300:
 				adb_controller.click([140,520])
 				re = adb_controller.wait_to_match_and_click([r"template_images\shop6.png"],[0.1],True,5,2,settings.accidents)
 				re = adb_controller.wait_to_match_and_click([r"template_images\shop7.png"],[0.1],True,5,2,settings.accidents)
@@ -694,6 +703,7 @@ def go_clue_get_on_clue():
 			[r"template_images\gclue7_1.png",r"template_images\gclue7_2.png"],[0.1,0.1],True,3,1,scope = (148,330,879,1268))
 		if(re == None):
 			adb_controller.click((1094,238))
+		time.sleep(2)
 	re= adb_controller.click([1,1])
 	#originally back then enter again
 	# re  = adb_controller.wait_to_match_and_click([r"template_images\gclue11.png"],[0.1],True,10,2,settings.accidents)
@@ -749,7 +759,7 @@ def go_send_additional_clue():
 
 
 def go_clue_get_new_clue():
-	for repeat_time in range(0,2):
+	for repeat_time in range(2):
 		re  = adb_controller.wait_to_match_and_click(
 			[r"template_images\gclue9.png",r"template_images\gclue9_2.png"]
 			,[0.1,0.1],False,10,2,settings.accidents,click_offset = (-20,44))
@@ -758,6 +768,7 @@ def go_clue_get_new_clue():
 				r"template_images\gclue10.png",r"template_images\gclue10_1.png"],[0.1,0.1],True,10,2,settings.accidents)
 			time.sleep(5)
 			adb_controller.click([1,1])#go back to previous screen if needed
+			time.sleep(2)
 		else:
 			break;
 
