@@ -191,20 +191,20 @@ def go_infrastructure():
 	print("ArknightsController:Check Blue Notification  ....")
 	re = adb_controller.wait_to_match_and_click([r"template_images\infrastructure5.png"],[0.05],True,5,3,settings.accidents)
 	# re = adb_controller.wait_to_match_and_click([r"template_images\infrastructure5.png"],[0.05],True,5,3)
-	time.sleep(1)
+	# time.sleep(1)
 	if(re == "success"):
 		print("ArknightsController:Collect Trust  ....")
 		re = adb_controller.wait_to_match_and_click([r"template_images\infrastructure6.png"],[0.05],True,5,2,settings.accidents)
 		print("ArknightsController:Collect Goods ....")
 		re = adb_controller.wait_to_match_and_click([r"template_images\yellow_infra.png"],[0.05],True,5,2,settings.accidents)
-		time.sleep(1)
+		# time.sleep(1)
 		re = adb_controller.wait_to_match_and_click([r"template_images\blue_infra.png"],[0.05],True,5,2,settings.accidents)
-		time.sleep(2)
+		# time.sleep(2)
 		#replaced by go drone
 		re = go_drone_inside()
 		# re = adb_controller.click([400,200])
 		#replaced
-		time.sleep(1)
+		# time.sleep(1)
 		# print("ArknightsController:Get Back  ....")
 		# re = adb_controller.wait_to_match_and_click([r"template_images\infrastructure7.png"],[0.1],True,10,2,settings.accidents)
 		# re = adb_controller.wait_to_match_and_click([r"template_images\infrastructure7_2.png"],[0.1],True,5,2,settings.accidents)
@@ -215,12 +215,12 @@ def go_infrastructure():
 	else:
 		print("ArknightsController:Do not find Blue Notification  ....")
 		adb_controller.click([150,410])
-		time.sleep(1)
+		# time.sleep(1)
 		re = go_drone_inside()
 
 	print("ArknightsController:Change the Crew  ....")
 	re  = adb_controller.wait_to_match_and_click([r"template_images\infrastructure8.png"],[0.1],True,10,1,accidents = settings.accidents)
-	time.sleep(2)
+	# time.sleep(2)
 
 
 	#remove first row to preserve 永动车
@@ -240,7 +240,7 @@ def go_infrastructure():
 			# print(image_processor.last_match_loc, " matched: ",matched_locs)
 			if re != "success":
 				re  = adb_controller.wait_to_match_and_click([r"template_images\red_confirm1.png"],[0.1],True,1,2,settings.accidents)
-			time.sleep(3)
+			# time.sleep(3)
 			# re  = adb_controller.wait_to_match_and_click(
 			# 	[r"template_images\infrastructure10.png"
 			# 	,r"template_images\infrastructure11.png"
@@ -290,7 +290,7 @@ def go_infrastructure():
 			if(re == "success"):
 				matched_locs.append(image_processor.last_match_loc)
 				# print("KKK:"+str(matched_locs))
-				time.sleep(2)
+				# time.sleep(2)
 				clicked_nums = 0
 				for rect_index in range(0,len(crew_rects["up_left_loc"])):
 					print("ArknightsController: Check rect_index = "+str(rect_index))
@@ -324,10 +324,10 @@ def go_infrastructure():
 					[r"template_images\infrastructure15.png"
 					,r"template_images\infrastructure15_2.png"
 					],[0.1,0.1],True,10,1,accidents = settings.accidents)
-				time.sleep(4)
+				# time.sleep(4)
 
 		adb_controller.screenshot(r"temp_screenshot\last_screenshot.png")
-		time.sleep(4)
+		time.sleep(2)
 		adb_controller.swipe((1000,600),(1000,150),2000)
 		time.sleep(1)
 		adb_controller.screenshot(r"temp_screenshot\screenshot.png")
@@ -374,15 +374,15 @@ def go_collect_quests():
 	re  = adb_controller.wait_to_match_and_click([r"template_images\quest2.png"],[0.1],True,10,1,settings.accidents)
 	if(re == "restart"):return re
 	adb_controller.click([1,1])
-	time.sleep(1)
+	# time.sleep(1)
 	adb_controller.click([1,1])
-	time.sleep(3)
+	# time.sleep(3)
 	re  = adb_controller.wait_to_match_and_click([r"template_images\quest4.png"],[0.1],True,10,1,settings.accidents)
 	if(re == "restart"):return re
 	re  = adb_controller.wait_to_match_and_click([r"template_images\quest2.png"],[0.1],True,10,1,settings.accidents)
 	if(re == "restart"):return re
 	adb_controller.click([1,1])
-	time.sleep(1)
+	# time.sleep(1)
 	adb_controller.click([1,1])
 	# re  = adb_controller.wait_to_match_and_click([r"template_images\quest5.png"],[0.1],True,10,1,settings.accidents)
 	# if(re == "restart"):return re
@@ -406,14 +406,14 @@ def go_shop():
 	print("ArknightsController:Start to go shop  ....")
 	re  = adb_controller.wait_to_match_and_click([r"template_images\shop1.png"],[0.1],True,5,2,settings.accidents)
 	if(re == "restart"):return re
-	time.sleep(2)
+	# time.sleep(2)
 	re  = adb_controller.wait_to_match_and_click([r"template_images\shop2.png"],[0.1],True,5,2,settings.accidents)
 	if(re == "restart"):return re
-	time.sleep(2)
+	# time.sleep(2)
 
 	if(re == "restart"):return re
 	re  = adb_controller.wait_to_match_and_click([r"template_images\shop3.png"],[0.1],True,5,2,settings.accidents)
-	time.sleep(2)
+	# time.sleep(2)
 	if(re == "restart"):return re
 	re  = adb_controller.wait_to_match_and_click([r"template_images\shop7.png"],[0.1],True,5,2,settings.accidents)
 	if(re == "restart"):return re
@@ -425,21 +425,21 @@ def go_shop():
 		# re  = adb_controller.wait_to_match_and_click([r"template_images\99discount.png"],[0.005],True,2,2,settings.accidents)
 		# if(re == "success"):
 			adb_controller.wait_to_match_and_click([r"template_images\shop6.png"],[0.1],True,5,2,settings.accidents)
-			time.sleep(2)
+			# time.sleep(2)
 			adb_controller.wait_to_match_and_click([r"template_images\shop7.png"],[0.1],True,5,2,settings.accidents)
 
 		while (adb_controller.wait_to_match_and_click([r"template_images\95discount.png"],[0.005],True,5,2,settings.accidents) == "success"):
 		# re  = adb_controller.wait_to_match_and_click([r"template_images\99discount.png"],[0.005],True,2,2,settings.accidents)
 		# if(re == "success"):
 			adb_controller.wait_to_match_and_click([r"template_images\shop6.png"],[0.1],True,5,2,settings.accidents)
-			time.sleep(2)
+			# time.sleep(2)
 			adb_controller.wait_to_match_and_click([r"template_images\shop7.png"],[0.1],True,5,2,settings.accidents)
 			
 		while (adb_controller.wait_to_match_and_click([r"template_images\75discount.png"],[0.005],True,5,2,settings.accidents) == "success"):
 		# re  = adb_controller.wait_to_match_and_click([r"template_images\75discount.png"],[0.005],True,2,2,settings.accidents)
 		# if(re == "success"):
 			adb_controller.wait_to_match_and_click([r"template_images\shop6.png"],[0.1],True,5,2,settings.accidents)
-			time.sleep(2)
+			# time.sleep(2)
 			adb_controller.wait_to_match_and_click([r"template_images\shop7.png"],[0.1],True,5,2,settings.accidents)
 			
 		
@@ -447,7 +447,7 @@ def go_shop():
 		while (adb_controller.wait_to_match_and_click([r"template_images\red_card.png"],[0.1],True,5,2,settings.accidents) == "success"):
 		# if(re == "success"):
 			adb_controller.wait_to_match_and_click([r"template_images\shop6.png"],[0.1],True,5,2,settings.accidents)
-			time.sleep(2)
+			# time.sleep(2)
 			adb_controller.wait_to_match_and_click([r"template_images\shop7.png"],[0.1],True,5,2,settings.accidents)
 			# continue
 	
@@ -455,7 +455,7 @@ def go_shop():
 		# re  = adb_controller.wait_to_match_and_click([r"template_images\hire_card.png"],[0.1],True,2,2,settings.accidents)
 		# if(re == "success"):
 			adb_controller.wait_to_match_and_click([r"template_images\shop6.png"],[0.1],True,5,2,settings.accidents)
-			time.sleep(2)
+			# time.sleep(2)
 			adb_controller.wait_to_match_and_click([r"template_images\shop7.png"],[0.1],True,5,2,settings.accidents)
 			# continue
 	
@@ -468,9 +468,9 @@ def go_shop():
 			# 	[r"template_images\75discount.png",r"template_images\50discount.png"],[0.1,0.1],True,10,2,settings.accidents)
 			if(re == "success"):
 				adb_controller.wait_to_match_and_click([r"template_images\shop6.png"],[0.1],True,5,2,settings.accidents)
-				time.sleep(2)
+				# time.sleep(2)
 				adb_controller.wait_to_match_and_click([r"template_images\shop7.png"],[0.1],True,5,2,settings.accidents)
-				time.sleep(1)
+				# time.sleep(1)
 				adb_controller.screenshot(settings.screenshot_path)
 				continue
 			else:
@@ -500,7 +500,7 @@ def go_shop():
 			
 			re = adb_controller.wait_to_match_and_click([r"template_images\shop6.png"],[0.1],True,5,2,settings.accidents)
 			re = adb_controller.wait_to_match_and_click([r"template_images\shop7.png"],[0.1],True,5,2,settings.accidents)
-			time.sleep(1)
+			# time.sleep(1)
 			adb_controller.screenshot(settings.screenshot_path)
 
 			if int(image_processor.easyocr_read(settings.screenshot_path, True, scope = (20,60,1140,1200))[0][1]) > 300:
@@ -510,13 +510,13 @@ def go_shop():
 
 			else:
 				break
-			time.sleep(3)
+			# time.sleep(3)
 
 			if int(image_processor.easyocr_read(settings.screenshot_path, True, scope = (20,60,1140,1200))[0][1]) > 300:
 				adb_controller.click([620,520])
 				re = adb_controller.wait_to_match_and_click([r"template_images\shop6.png"],[0.1],True,5,2,settings.accidents)
 				re = adb_controller.wait_to_match_and_click([r"template_images\shop7.png"],[0.1],True,5,2,settings.accidents)
-				time.sleep(1)
+				# time.sleep(1)
 			else:
 				break
 
@@ -525,7 +525,7 @@ def go_shop():
 				adb_controller.click([360,520])
 				re = adb_controller.wait_to_match_and_click([r"template_images\shop6.png"],[0.1],True,5,2,settings.accidents)
 				re = adb_controller.wait_to_match_and_click([r"template_images\shop7.png"],[0.1],True,5,2,settings.accidents)
-				time.sleep(1)
+				# time.sleep(1)
 			else:
 				break
 
@@ -534,7 +534,7 @@ def go_shop():
 				adb_controller.click([140,520])
 				re = adb_controller.wait_to_match_and_click([r"template_images\shop6.png"],[0.1],True,5,2,settings.accidents)
 				re = adb_controller.wait_to_match_and_click([r"template_images\shop7.png"],[0.1],True,5,2,settings.accidents)
-				time.sleep(1)
+				# time.sleep(1)
 			else:
 				break	
 			break		
@@ -573,14 +573,14 @@ def go_hire_crew():
 	print("ArknightsController:Start to hire crew  ....")
 	re  = adb_controller.wait_to_match_and_click([r"template_images\hire1.png"],[0.1],True,10,2,settings.accidents)
 	if(re == "restart"):return re
-	time.sleep(3)
+	# time.sleep(3)
 	print("ArknightsController:Try to collect crew  ....")
 	while(True):
 		re  = adb_controller.wait_to_match_and_click([r"template_images\hire2.png"],[0.1],True,5,2,settings.accidents)
 		if(re == "success"):
-			time.sleep(2)
+			# time.sleep(2)
 			re2  = adb_controller.wait_to_match_and_click([r"template_images\hire3.png"],[0.1],True,5,2,settings.accidents)
-			time.sleep(2)
+			# time.sleep(2)
 			#added
 			adb_controller.click((1,1))
 			quick_check = adb_controller.wait_till_match_any(
@@ -610,7 +610,7 @@ def go_hire_crew():
 			,r"template_images\hire4_4.png"]
 			,[0.05,0.05,0.05,0.05],True,10,2,settings.accidents)
 		if(re == "success"):
-			time.sleep(2)
+			# time.sleep(2)
 			re2  = adb_controller.wait_to_match_and_click(
 				[r"template_images\hire5.png"],[0.1],False,5,2,settings.accidents,click_offset = (225,180))
 
@@ -665,10 +665,10 @@ def go_hire_crew():
 				[r"template_images\refresh1.png"],[0.1],True,3,2,settings.accidents)
 					re2  = adb_controller.wait_to_match_and_click(
 				[r"template_images\red_confirm1.png"],[0.1],True,3,2,settings.accidents)
-					time.sleep(3)
+					# time.sleep(3)
 					re2  = adb_controller.wait_to_match_and_click(
 				[r"template_images\back.png"],[0.1],True,10,2,settings.accidents)
-					time.sleep(1)
+					# time.sleep(1)
 					continue
 					#click refresh, and restart the loop
 
@@ -676,7 +676,7 @@ def go_hire_crew():
 			# end of new logic
 			re2  = adb_controller.wait_to_match_and_click(
 				[r"template_images\hire7.png"],[0.1],True,2,2,settings.accidents)
-			time.sleep(7)
+			# time.sleep(7)
 		else:
 			break
 
@@ -696,7 +696,7 @@ def recieve_clue_from_friends():
 	return 0
 def go_clue_get_on_clue():
 	re  = adb_controller.wait_to_match_and_click([r"template_images\gclue5.png"],[0.1],True,10,2,settings.accidents)
-	time.sleep(1)
+	# time.sleep(1)
 	re  = adb_controller.wait_to_match_and_click([r"template_images\clue_inbox.png"],[0.1],True,10,2,settings.accidents)
 	for tab_index in range(1,8):
 		re  = adb_controller.wait_to_match_and_click([r"template_images\gclue6_{}.png".format(tab_index)],[0.1],True,10,2,settings.accidents)
@@ -704,7 +704,7 @@ def go_clue_get_on_clue():
 			[r"template_images\gclue7_1.png",r"template_images\gclue7_2.png"],[0.1,0.1],True,3,1,scope = (148,330,879,1268))
 		if(re == None):
 			adb_controller.click((1094,238))
-		time.sleep(2)
+		# time.sleep(2)
 	re= adb_controller.click([1,1])
 	#originally back then enter again
 	# re  = adb_controller.wait_to_match_and_click([r"template_images\gclue11.png"],[0.1],True,10,2,settings.accidents)
@@ -767,9 +767,9 @@ def go_clue_get_new_clue():
 		if(re == "success"):
 			re  = adb_controller.wait_to_match_and_click([
 				r"template_images\gclue10.png",r"template_images\gclue10_1.png"],[0.1,0.1],True,10,2,settings.accidents)
-			time.sleep(5)
+			# time.sleep(5)
 			adb_controller.click([1,1])#go back to previous screen if needed
-			time.sleep(2)
+			# time.sleep(2)
 		else:
 			break;
 
@@ -847,12 +847,12 @@ def go_drone_inside():
 	# re  = adb_controller.wait_to_match_and_click([r"template_images\drone2.png"],[0.1],True,20,1,settings.accidents)
 	# if(re != "success"):
 	# 	return "end"
-	time.sleep(5)
+	# time.sleep(5)
 	# re = adb_controller.click([300,600])
 	re  = adb_controller.wait_to_match_and_click([r"template_images\factory.png"],[0.1],True,10,1,settings.accidents)
 	# if(re != "success"):
 	# 	return "end"
-	time.sleep(3)
+	# time.sleep(3)
 
 	re  = adb_controller.wait_to_match_and_click([r"template_images\yellow_drone_speed_up.png"],[0.1],True,5,1,settings.accidents)
 	# if(re != "success"):
@@ -870,18 +870,18 @@ def go_drone_inside():
 		re  = adb_controller.wait_to_match_and_click([r"template_images\drone6.png"],[0.1],True,3,1,settings.accidents)
 		# if(re != "success"):
 		# 	return "end"
-		time.sleep(5)
+		# time.sleep(5)
 		re  = adb_controller.wait_to_match_and_click([r"template_images\recieve.png"],[0.1],True,5,1,settings.accidents)
 		# if(re != "success"):
 		# 	return "end"
-		time.sleep(10)
+		# time.sleep(10)
 	else:
 		print("Failed to boost, operator not in factory or already used all drones")
 
 	re  = adb_controller.wait_to_match_and_click([r"template_images\back.png"],[0.1],True,3,1,settings.accidents)
 	# if(re != "success"):
 	# 	return "end"
-	time.sleep(2)
+	# time.sleep(2)
 	re  = adb_controller.wait_to_match_and_click([r"template_images\back.png"],[0.1],True,3,1,settings.accidents)
 	# if(re != "success"):
 	# 	return "end"
@@ -1030,7 +1030,7 @@ while(True):
 			print("ArknightsController: Going back home page")
 			re = adb_controller.wait_to_match_and_click([r"template_images\options.png"],[0.3],True,5,2)
 			re = adb_controller.wait_to_match_and_click([r"template_images\home_option.png"],[0.3],True,5,2)
-			time.sleep(5)
+			# time.sleep(5)
 
 			if have_anything_to_do == False:
 				print("ArknightsController: Close the game")

@@ -37,7 +37,7 @@ def click(location):
 	# while wait_till_match_any([r"template_images\internet_lag.png"],[0.1],True,3,0,settings.accidents):
 	# 	continue
 	while 1:
-		if not wait_till_match_any([r"template_images\internet_lag.png"],[0.1],True,1,0,log = False,scope=([625,710,600,690])):
+		if not wait_till_match_any([r"template_images\internet_lag.png"],[0.4],True,1,0,log = False,scope=([625,710,600,690])):
 			break
 		else:
 			print("Internet lag detected!!!")
@@ -48,7 +48,7 @@ def screenshot(path):
 	os.system("\""+settings.adb_path+"\""+" -s "+settings.device_address+" exec-out screencap -p > " + path)
 	time.sleep(0.5)
 
-def check_if_accidents(accidents , log = False):
+def check_if_accidents(accidents , log=False):
 	if log == True:
 		print("AdbController:Check if any accidents : "+str(accidents["paths"]))
 	
@@ -114,7 +114,7 @@ def wait_to_match_and_click(
 		re = (re[0]+click_offset[0],re[1]+click_offset[1])
 	click(re)
 	while 1:
-		if not wait_till_match_any([r"template_images\internet_lag.png"],[0.1],True,1,0,log = False, scope=([625,710,600,690])):
+		if not wait_till_match_any([r"template_images\internet_lag.png"],[0.4],True,1,0,log = False, scope=([625,710,600,690])):
 			break
 		else:
 			print("Internet lag detected!!!")
@@ -184,7 +184,7 @@ def wait_till_match_any_text_and_click(aim_texts = [],max_time = 1,step_time = 1
 			click([i[0][0][0]+scope[2], i[0][0][1]+scope[0]]) #normalizing the crop
 			# click(i[0][0])
 		while 1:
-			if not wait_till_match_any([r"template_images\internet_lag.png"],[0.1],True,1,0,log = False,scope=([625,710,600,690])):
+			if not wait_till_match_any([r"template_images\internet_lag.png"],[0.4],True,1,0,log = False,scope=([625,710,600,690])):
 				break
 			else:
 				print("Internet lag detected!!")
