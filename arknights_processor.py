@@ -164,6 +164,7 @@ crew_rects={
 
 def go_infrastructure():
 
+		
 	print("ArknightsController:Start to run Infrastructure  ....")
 	#get in the Infrastructure
 	re  = adb_controller.wait_to_match_and_click([r"template_images\infrastructure1.png"],[0.1],True,20,1,settings.accidents)
