@@ -41,6 +41,7 @@ def click(location):
 			break
 		else:
 			print("Internet lag detected!!!")
+			time.sleep(1)
 			continue
 	time.sleep(0.5)
 
@@ -118,6 +119,7 @@ def wait_to_match_and_click(
 			break
 		else:
 			print("Internet lag detected!!!")
+			time.sleep(1)
 			continue
 	return "success"
 
@@ -188,6 +190,7 @@ def wait_till_match_any_text_and_click(aim_texts = [],max_time = 1,step_time = 1
 				break
 			else:
 				print("Internet lag detected!!")
+				time.sleep(1)
 				continue
 		return matched_result
 		if(time.time() - time_start > max_time):

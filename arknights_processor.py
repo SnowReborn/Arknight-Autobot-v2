@@ -690,6 +690,12 @@ def go_clue_get_in():
 	adb_controller.swipe((800,400),(400,400),2000)
 	re  = adb_controller.wait_to_match_and_click([r"template_images\gclue3.png"],[0.1],True,10,2,settings.accidents)
 	re  = adb_controller.wait_to_match_and_click([r"template_images\gclue4.png"],[0.1],True,10,2,settings.accidents)
+	#new , check if finished exchange clue
+	adb_controller.screenshot(r"temp_screenshot\screenshot.png")
+
+	adb_controller.screenshot(settings.screenshot_path)
+	if image_processor.match_template(settings.screenshot_path, r"template_images\finished_exchange.png", scope=(70,160,20,350)):
+		adb_controller.wait_to_match_and_click([r"template_images\back.png"],[0.1],True,3,1,settings.accidents)
 	
 # Require get in first
 def recieve_clue_from_friends():
@@ -775,6 +781,7 @@ def go_clue_get_new_clue():
 
 
 def go_clue():
+	
 	print("ArknightsController:Start to Go Clue -- Get in ....")
 	go_clue_get_in()
 
