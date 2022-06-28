@@ -69,9 +69,13 @@ def match_template(target_path,template_path,threshold = 0.05,return_center = Tr
 	return min_loc
 
 
-def easyocr_read(target_path,print_debug = True,scope = None):
+def easyocr_read(target_path,print_debug = True,scope = None, num_only = False):
 
-	reader = easyocr.Reader(['ch_sim','en'], gpu = False)
+	
+	if num_only == True:
+		reader = easyocr.Reader(['ch_sim'],gpu = False)
+	else:
+		reader = easyocr.Reader(['ch_sim','en'], gpu = False)
 	target = cv2.imread(target_path) 
 
 	if(scope != None):
