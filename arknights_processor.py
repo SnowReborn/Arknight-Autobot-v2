@@ -189,16 +189,16 @@ def go_infrastructure():
 		# time.sleep(1.5)
 
 	print("ArknightsController:Check Blue Notification  ....")
-	re = adb_controller.wait_to_match_and_click([r"template_images\infrastructure5.png"],[0.05],True,5,3,settings.accidents)
+	re = adb_controller.wait_to_match_and_click([r"template_images\infrastructure5.png"],[0.05],True,3,0.5,settings.accidents)
 	# re = adb_controller.wait_to_match_and_click([r"template_images\infrastructure5.png"],[0.05],True,5,3)
 	# time.sleep(1)
 	if(re == "success"):
 		print("ArknightsController:Collect Trust  ....")
-		re = adb_controller.wait_to_match_and_click([r"template_images\infrastructure6.png"],[0.05],True,5,2,settings.accidents)
+		re = adb_controller.wait_to_match_and_click([r"template_images\infrastructure6.png"],[0.05],True,3,0.5,settings.accidents)
 		print("ArknightsController:Collect Goods ....")
-		re = adb_controller.wait_to_match_and_click([r"template_images\yellow_infra.png"],[0.05],True,5,2,settings.accidents)
+		re = adb_controller.wait_to_match_and_click([r"template_images\yellow_infra.png"],[0.05],True,3,0.5,settings.accidents)
 		# time.sleep(1)
-		re = adb_controller.wait_to_match_and_click([r"template_images\blue_infra.png"],[0.05],True,5,2,settings.accidents)
+		re = adb_controller.wait_to_match_and_click([r"template_images\blue_infra.png"],[0.05],True,3,0.5,settings.accidents)
 		# time.sleep(2)
 		#replaced by go drone
 		re = go_drone_inside()
@@ -219,27 +219,27 @@ def go_infrastructure():
 		re = go_drone_inside()
 
 	print("ArknightsController:Change the Crew  ....")
-	re  = adb_controller.wait_to_match_and_click([r"template_images\infrastructure8.png"],[0.1],True,10,1,accidents = settings.accidents)
-	# time.sleep(2)
+	re  = adb_controller.wait_to_match_and_click([r"template_images\infrastructure8.png"],[0.1],True,5,1,accidents = settings.accidents)
+	time.sleep(2)
 
 
 	#remove first row to preserve 永动车
 	adb_controller.swipe((1000,600),(1000,400),2000)
 	#Get Down
-	re  = adb_controller.wait_to_match_and_click([r"template_images\infrastructure9.png"],[0.1],True,10,1,accidents = settings.accidents)
+	re  = adb_controller.wait_to_match_and_click([r"template_images\infrastructure9.png"],[0.1],True,5,1,accidents = settings.accidents)
 	while(True):#scoll
 		#revised instead of clicking each operator, lay off entire row
 		matched_locs = []
 		re = "success"
 		while(re == "success"):
-			re  = adb_controller.wait_to_match_and_click([r"template_images\layoff.png"],[0.1],False,2,1,scope =(120,720,1170,1235),accidents = settings.accidents,except_locs = matched_locs)
+			re  = adb_controller.wait_to_match_and_click([r"template_images\layoff.png"],[0.1],False,1.5,0,scope =(120,720,1170,1235),accidents = settings.accidents,except_locs = matched_locs)
 			
 			if(image_processor.last_match_loc != None):
 				matched_locs.append(image_processor.last_match_loc)
 
 			# print(image_processor.last_match_loc, " matched: ",matched_locs)
 			if re != "success":
-				re  = adb_controller.wait_to_match_and_click([r"template_images\red_confirm1.png"],[0.1],True,1,2,settings.accidents)
+				re  = adb_controller.wait_to_match_and_click([r"template_images\red_confirm1.png"],[0.1],True,1,0,settings.accidents)
 			# time.sleep(3)
 			# re  = adb_controller.wait_to_match_and_click(
 			# 	[r"template_images\infrastructure10.png"
@@ -267,9 +267,9 @@ def go_infrastructure():
 	print("ArknightsController:Start to Station the Crew  ....")
 
 	print("ArknightsController:Get Out  ....")
-	re = adb_controller.wait_to_match_and_click([r"template_images\infrastructure7.png"],[0.1],True,10,2,settings.accidents)
+	re = adb_controller.wait_to_match_and_click([r"template_images\infrastructure7.png"],[0.1],True,5,2,settings.accidents)
 	print("ArknightsController:Get In  ....")
-	re  = adb_controller.wait_to_match_and_click([r"template_images\infrastructure8.png"],[0.1],True,10,1,accidents = settings.accidents)
+	re  = adb_controller.wait_to_match_and_click([r"template_images\infrastructure8.png"],[0.1],True,5,1,accidents = settings.accidents)
 
 	#Get On
 	while(True):#Repeat Scorll
@@ -284,7 +284,7 @@ def go_infrastructure():
 				,r"template_images\infrastructure13_4.png"
 				,r"template_images\infrastructure13_5.png"
 				,r"template_images\infrastructure13_6.png"
-				],[0.02,0.02,0.02,0.02,0.02,0.02],True,6,2
+				],[0.02,0.02,0.02,0.02,0.02,0.02],True,3,1
 				,accidents = settings.accidents,scope = (118,720,618,1226),except_locs = matched_locs)
 			
 			if(re == "success"):
@@ -301,8 +301,9 @@ def go_infrastructure():
 						,r"template_images\infrastructure16_4.png"
 						,r"template_images\infrastructure16_5.png"
 						,r"template_images\infrastructure16_6.png"
-						,r"template_images\infrastructure16_7.png"]
-						,[0.05,0.05,0.05,0.05,0.02,0.1,0.1],True,1,1,scope = (
+						,r"template_images\infrastructure16_7.png"
+						,r"template_images\alt_operator.png"]
+						,[0.05,0.05,0.05,0.05,0.02,0.1,0.1,0.4],True,1,0,scope = (
 							crew_rects["up_left_loc"][rect_index][1]-40
 							,crew_rects["up_left_loc"][rect_index][1] + crew_rects["height"]
 							,crew_rects["up_left_loc"][rect_index][0]-40
@@ -323,7 +324,7 @@ def go_infrastructure():
 				re2  = adb_controller.wait_to_match_and_click(
 					[r"template_images\infrastructure15.png"
 					,r"template_images\infrastructure15_2.png"
-					],[0.1,0.1],True,10,1,accidents = settings.accidents)
+					],[0.1,0.1],True,5,1,accidents = settings.accidents)
 				# time.sleep(4)
 
 		adb_controller.screenshot(r"temp_screenshot\last_screenshot.png")
@@ -797,7 +798,7 @@ def go_clue():
 		re  = adb_controller.wait_to_match_and_click([r"template_images\gclue4.png"],[0.1],True,10,2,settings.accidents)
 
 	print("ArknightsController:Start to Go Clue -- Send additional clue  ....")
-	go_send_additional_clue()
+	# go_send_additional_clue()
 
 	print("ArknightsController:Start to Go Clue -- Get new clue  ....")
 	go_clue_get_new_clue()
