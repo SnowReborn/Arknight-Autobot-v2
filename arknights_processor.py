@@ -623,10 +623,11 @@ def go_hire_crew():
 			re2  = adb_controller.wait_to_match_and_click(
 				[r"template_images\hire5.png"],[0.1],False,4,0,settings.accidents,click_offset = (225,180))
 
-			re2 = adb_controller.wait_till_match_any_text(settings.go_hire_stop_options,5,0,scope = (343,500,338,900))
-			if(re2 != None):
-				print("ArknightsController:Found stop option in {},so stop".format(str(settings.go_hire_stop_options)))
-				return "success"
+			#original check and stop func
+			# re2 = adb_controller.wait_till_match_any_text(settings.go_hire_stop_options,5,0,scope = (343,500,338,900))
+			# if(re2 != None):
+			# 	print("ArknightsController:Found stop option in {},so stop".format(str(settings.go_hire_stop_options)))
+			# 	return "success"
 
 			#new logic
 			#["群攻","快速复活","术师干员"]
@@ -635,9 +636,18 @@ def go_hire_crew():
 			best_combination = []
 			adb_controller.screenshot(settings.screenshot_path)
 			result = image_processor.easyocr_read(settings.screenshot_path, True, scope = (367,500,338,900))
+			stop_tags = 0
 			for reline in result:
 				re_text = reline[1].replace(" ","")
 				five_hire_tags.append(re_text)
+			#new stop trigger func
+			for i in settings.go_hire_stop_options:
+				if i in five_hire_tags:
+					print("ArknightsController:Found stop option in {},so stop".format(str(settings.go_hire_stop_options)))
+					stop_tags = 1
+					
+			if stop_tags == 1:
+				break
 
 			for i in hiring_priority_list:
 				if set(i).issubset(five_hire_tags):
@@ -663,7 +673,7 @@ def go_hire_crew():
 			
 			if best_combination == []:
 				adb_controller.screenshot(settings.screenshot_path)
-				refresh_count = image_processor.easyocr_read(settings.screenshot_path, True, scope = (72,100,870,960))#(y1, y2, x1,x2)
+				refresh_count = image_processor.easyocr_read(settings.screenshot_path, True, scope = (72,100,870,960))[0][1]#(y1, y2, x1,x2)
 				print(refresh_count)
 				#if retry count is larger than 3 and no good tags, then refresh, otherwise, select random 3
 				if refresh_count == "联络次数0":
