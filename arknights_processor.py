@@ -645,7 +645,7 @@ def go_hire_crew():
 				if i in five_hire_tags:
 					print("ArknightsController:Found stop option in {},so stop".format(str(settings.go_hire_stop_options)))
 					stop_tags = 1
-					
+
 			if stop_tags == 1:
 				break
 
@@ -662,6 +662,25 @@ def go_hire_crew():
 						best_combination.append(i)
 						print("less priority combo found : ", best_combination)
 						adb_controller.wait_till_match_any_text_and_click(i,3,0,scope = (367,500,338,900))
+				#new testing function to refresh if less priority tags are less than 3
+				if len(best_combination) < 3:
+					refresh_count = image_processor.easyocr_read(settings.screenshot_path, True, scope = (72,100,870,960))[0][1]#(y1, y2, x1,x2)
+					print(refresh_count)
+					#if retry count is larger than 3 and no good tags, then refresh, otherwise, select random 3
+					if refresh_count == "联络次数3/3":
+						print("using refresh to get potential better tags!")
+						# re2  = adb_controller.wait_to_match_and_click(
+						# [r"template_images\hire6.png"],[0.1],False,10,2,settings.accidents,click_offset = (195,-12))
+
+						re2  = adb_controller.wait_to_match_and_click(
+					[r"template_images\refresh1.png"],[0.1],True,3,0,settings.accidents)
+						re2  = adb_controller.wait_to_match_and_click(
+					[r"template_images\red_confirm1.png"],[0.1],True,3,0,settings.accidents)
+						# time.sleep(3)
+						re2  = adb_controller.wait_to_match_and_click(
+					[r"template_images\back.png"],[0.1],True,3,0,settings.accidents)
+						# time.sleep(1)
+						continue
 
 				
 				#click any 3 less priority
