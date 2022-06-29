@@ -303,12 +303,12 @@ def go_infrastructure():
 						,r"template_images\infrastructure16_6.png"
 						,r"template_images\infrastructure16_7.png"
 						,r"template_images\alt_operator.png"]
-						,[0.05,0.05,0.05,0.05,0.02,0.1,0.1,0.4],True,1,0,scope = (
+						,[0.05,0.05,0.05,0.05,0.02,0.1,0.1,0.35],True,1,0,scope = (
 							crew_rects["up_left_loc"][rect_index][1]-40
 							,crew_rects["up_left_loc"][rect_index][1] + crew_rects["height"]
 							,crew_rects["up_left_loc"][rect_index][0]-40
 							,crew_rects["up_left_loc"][rect_index][0] + crew_rects["witdth"]
-							)
+							) , chk_net = False
 						)
 					if(re2 != None):
 						print("ArknightsController: Crew "+str(rect_index)+" is already in work/rest")
@@ -353,7 +353,7 @@ def go_visit_friends():
 	while not((visit_times > 12) or adb_controller.wait_till_match_any([r"template_images\friends4.png"],[0.1],True,5,2,settings.accidents)):
 		# re  = adb_controller.wait_to_match_and_click([r"template_images\friends_orange.png"],[0.1],True,20,2,settings.accidents)
 		adb_controller.click((1174,632))
-		time.sleep(2)
+
 		
 		# time.sleep(3)
 		# re  = adb_controller.wait_to_match_and_click([r"template_images\friends4.png"],[0.1],True,20,2,settings.accidents)
@@ -654,14 +654,14 @@ def go_hire_crew():
 					best_combination = i
 					print("found high priority combo: ",best_combination)
 			if best_combination != []:
-				adb_controller.wait_till_match_any_text_and_click(best_combination,3,0,scope = (367,500,338,900))
+				adb_controller.wait_till_match_any_text_and_click(best_combination,3,0,scope = (367,500,338,900) , chk_net = False)
 
 			else:
 				for i in less_priority_list:
 					if set(i).issubset(five_hire_tags):
 						best_combination.append(i)
 						print("less priority combo found : ", best_combination)
-						adb_controller.wait_till_match_any_text_and_click(i,3,0,scope = (367,500,338,900))
+						adb_controller.wait_till_match_any_text_and_click(i,3,0,scope = (367,500,338,900) , chk_net = False)
 				#new testing function to refresh if less priority tags are less than 3
 				if len(best_combination) < 3:
 					refresh_count = image_processor.easyocr_read(settings.screenshot_path, True, scope = (72,100,870,960))[0][1]#(y1, y2, x1,x2)
@@ -698,7 +698,7 @@ def go_hire_crew():
 				if refresh_count == "联络次数0":
 					# re2  = adb_controller.wait_to_match_and_click(
 					# [r"template_images\hire6.png"],[0.1],False,10,2,settings.accidents,click_offset = (195,-12))
-					adb_controller.wait_till_match_any_text_and_click(five_hire_tags,3,0,scope = (367,500,338,900))
+					adb_controller.wait_till_match_any_text_and_click(five_hire_tags,3,0,scope = (367,500,338,900) , chk_net = False)
 				else:
 					re2  = adb_controller.wait_to_match_and_click(
 				[r"template_images\refresh1.png"],[0.1],True,3,0,settings.accidents)

@@ -12,6 +12,15 @@ def test():
 	# process = os.system("adb -s 127.0.0.1:62028 shell input tap 1200 340")
 	# process = os.system("adb -s 127.0.0.1:62028 shell input tap 30 30")
 
+def check_internet_lag():
+	while 1:
+		if not wait_till_match_any([r"template_images\internet_lag.png"],[0.4],True,1,0,log = False,scope=([625,710,600,690])):
+			break
+		else:
+			print("Internet lag detected!!!")
+			time.sleep(1)
+			continue
+
 def swipe(from_loc,to_loc,use_time):
 	print("AdbController:Swipe from "+str(from_loc)+" to "+str(to_loc)+" by "+str(use_time)+" millisecond")
 	process = os.system("\""+settings.adb_path+"\""+" -s "+settings.device_address+" shell input swipe "
@@ -27,7 +36,7 @@ def stop_app():
 
 last_click_loc = None
 
-def click(location):
+def click(location,chk_net = True):
 	
 	print("AdbController: Tap "+str(location[0])+" "+str(location[1]))
 	
@@ -36,14 +45,9 @@ def click(location):
 	os.system("\""+settings.adb_path+"\""+" -s "+settings.device_address+" shell input tap "+str(location[0])+" "+str(location[1]))
 	# while wait_till_match_any([r"template_images\internet_lag.png"],[0.1],True,3,0,settings.accidents):
 	# 	continue
-	while 1:
-		if not wait_till_match_any([r"template_images\internet_lag.png"],[0.4],True,1,0,log = False,scope=([625,710,600,690])):
-			break
-		else:
-			print("Internet lag detected!!!")
-			time.sleep(1)
-			continue
-	time.sleep(0.5)
+	if chk_net == True:
+		check_internet_lag()
+	# time.sleep(0.5)
 
 def screenshot(path):
 	os.system("\""+settings.adb_path+"\""+" -s "+settings.device_address+" exec-out screencap -p > " + path)
@@ -104,7 +108,7 @@ def wait_till_match_any(template_paths,thresholds,return_center,max_time,step_ti
 #any
 def wait_to_match_and_click(
 	template_paths,thresholds,return_center,max_time,step_time,accidents = None,click_offset = None,scope = None,except_locs = None
-	):
+	, chk_net = True):
 	re = wait_till_match_any(template_paths,thresholds,return_center,max_time,step_time,accidents,scope = scope,except_locs = except_locs)
 	if(re == "restart"):
 		return "restart"
@@ -114,13 +118,8 @@ def wait_to_match_and_click(
 	if(click_offset != None):
 		re = (re[0]+click_offset[0],re[1]+click_offset[1])
 	click(re)
-	while 1:
-		if not wait_till_match_any([r"template_images\internet_lag.png"],[0.4],True,1,0,log = False, scope=([625,710,600,690])):
-			break
-		else:
-			print("Internet lag detected!!!")
-			time.sleep(1)
-			continue
+	if chk_net == True:
+		check_internet_lag()
 	return "success"
 
 #match any
@@ -163,7 +162,7 @@ def wait_till_match_any_text(aim_texts = [],max_time = 1,step_time = 1,scope = N
 		time.sleep(step_time)
 
 
-def wait_till_match_any_text_and_click(aim_texts = [],max_time = 1,step_time = 1,scope = None):
+def wait_till_match_any_text_and_click(aim_texts = [],max_time = 1,step_time = 1,scope = None, chk_net = True):
 	print("AdbController: Start to wait till match screenshot by any text"+str(aim_texts)+" for up to "+str(max_time)+" seconds  ....")
 	time_start = time.time()
 	match_loc = None
@@ -185,13 +184,8 @@ def wait_till_match_any_text_and_click(aim_texts = [],max_time = 1,step_time = 1
 			print("qq22222222 : "+ str(i[0][0][0]))
 			click([i[0][0][0]+scope[2], i[0][0][1]+scope[0]]) #normalizing the crop
 			# click(i[0][0])
-		while 1:
-			if not wait_till_match_any([r"template_images\internet_lag.png"],[0.4],True,1,0,log = False,scope=([625,710,600,690])):
-				break
-			else:
-				print("Internet lag detected!!")
-				time.sleep(1)
-				continue
+		if chk_net == True:
+			check_internet_lag()
 		return matched_result
 		if(time.time() - time_start > max_time):
 			print("AdbController: Reach max_time but failed to match")
