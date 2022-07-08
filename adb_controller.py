@@ -67,17 +67,18 @@ def check_if_accidents(accidents , log=False):
 			
 			if(accidents["click_offset"][index] != None):
 				match_loc = (match_loc[0] + accidents["click_offset"][index][0],match_loc[1] + accidents["click_offset"][index][1])
-			
+				time.sleep(5)
 			if(accidents["methods"][index] == "click"):
 				click(match_loc)
 				return accidents["methods"][index]
-			
+				time.sleep(5)
 			if(accidents["methods"][index] == "restart"):
 				return accidents["methods"][index]
-			
+				time.sleep(5)
 			print("Unkonw method")
 			
 			return "restart"
+			time.sleep(5)
 	if log == True:
 		print("AdbController: No Accident")
 

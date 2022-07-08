@@ -4,7 +4,6 @@ import re
 import cv2
 import easyocr
 from PIL import Image
-
 import settings
 
 os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"

@@ -308,13 +308,13 @@ def go_infrastructure():
 							,crew_rects["up_left_loc"][rect_index][1] + crew_rects["height"]
 							,crew_rects["up_left_loc"][rect_index][0]-40
 							,crew_rects["up_left_loc"][rect_index][0] + crew_rects["witdth"]
-							) , chk_net = False
+							)
 						)
 					if(re2 != None):
 						print("ArknightsController: Crew "+str(rect_index)+" is already in work/rest")
 						continue
 					adb_controller.click((crew_rects["up_left_loc"][rect_index][0] + crew_rects["witdth"]/2
-						,crew_rects["up_left_loc"][rect_index][1] + crew_rects["height"]/2))
+						,crew_rects["up_left_loc"][rect_index][1] + crew_rects["height"]/2) , chk_net = False)
 					clicked_nums = clicked_nums + 1
 					if(clicked_nums >= 5):
 						break
@@ -530,7 +530,7 @@ def go_shop():
 				break
 
 			#4
-			if int(image_processor.easyocr_read(settings.screenshot_path, True, scope = (20,60,1140,1200))[0][1], num_only = True) > 300:
+			if int(image_processor.easyocr_read(settings.screenshot_path, True, scope = (20,60,1140,1200), num_only = True)[0][1]) > 300:
 				adb_controller.click([360,520])
 				re = adb_controller.wait_to_match_and_click([r"template_images\shop6.png"],[0.1],True,2.5,0,settings.accidents)
 				re = adb_controller.wait_to_match_and_click([r"template_images\shop7.png"],[0.1],True,2.5,0,settings.accidents)
@@ -621,7 +621,7 @@ def go_hire_crew():
 		if(re == "success"):
 			# time.sleep(2)
 			re2  = adb_controller.wait_to_match_and_click(
-				[r"template_images\hire5.png"],[0.1],False,4,0,settings.accidents,click_offset = (225,180))
+				[r"template_images\hire5.png"],[0.1],False,4,0,settings.accidents,click_offset = (225,180),chk_net = False)
 
 			#original check and stop func
 			# re2 = adb_controller.wait_till_match_any_text(settings.go_hire_stop_options,5,0,scope = (343,500,338,900))
