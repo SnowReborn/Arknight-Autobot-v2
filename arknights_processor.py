@@ -744,7 +744,7 @@ def go_clue_get_on_clue():
 	# time.sleep(1)
 	re  = adb_controller.wait_to_match_and_click([r"template_images\clue_inbox.png"],[0.1],True,10,2,settings.accidents)
 	for tab_index in range(1,8):
-		re  = adb_controller.wait_to_match_and_click([r"template_images\gclue6_{}.png".format(tab_index)],[0.1],True,10,2,settings.accidents)
+		re  = adb_controller.wait_to_match_and_click([r"template_images\gclue6_{}.png".format(tab_index)],[0.1],True,10,2,settings.accidents,chk_net=False)
 		re = adb_controller.wait_till_match_any(
 			[r"template_images\gclue7_1.png",r"template_images\gclue7_2.png"],[0.1,0.1],True,3,1,scope = (148,330,879,1268))
 		if(re == None):
@@ -757,38 +757,60 @@ def go_clue_get_on_clue():
 
 def go_send_additional_clue():
 	
-	re  = adb_controller.wait_to_match_and_click([r"template_images\gclue12.png"],[0.1],True,10,2,settings.accidents)
+	re  = adb_controller.wait_to_match_and_click([r"template_images\gclue12.png"],[0.01],True,10,2,settings.accidents)
 
 	for tab_index in range(1,8):
 
 		re  = adb_controller.wait_to_match_and_click(
-			[r"template_images\gclue18_{}.png".format(tab_index)],[0.1],True,5,1,settings.accidents)
+			[r"template_images\gclue18_{}.png".format(tab_index)],[0.1],True,5,1,settings.accidents,chk_net = False)
+
+		re3  = adb_controller.wait_to_match_and_click(
+					[r"template_images\gclue13.png"],[0.1],True,1,0,settings.accidents,scope = (136,334,14,423),chk_net= False)
+		if(re3 == "success"):
+			for i in range(12):
+					adb_controller.click((1120,680),chk_net=False)#reset to first page
 
 		if(re == None):
 			print("ArknightsController:ERROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOR cannot find number tab  ....")
 			return "ERROR"
-
-		re  = adb_controller.wait_to_match_and_click(
-			[r"template_images\gclue13.png"],[0.1],True,3,1,settings.accidents,scope = (336,534,14,423))
+		
 
 		if(re == "success"):
-
+			
 			direction = "No"
-
+			#new
+			clue_priority ="today"
+			matched_locs = []
+			#end of new
 			while(True):
+				# original skips first clue, below includes first clue, also moving down to the while loop
+				# re  = adb_controller.wait_to_match_and_click(
+				# 	[r"template_images\gclue13.png"],[0.1],True,3,1,settings.accidents,scope = (336,534,14,423))
+				re3  = adb_controller.wait_to_match_and_click(
+					[r"template_images\gclue13.png"],[0.1],True,2,0,settings.accidents,scope = (136,334,14,423),chk_net= False)
+				if re3 != "success":
+					break
+
 				re2 = adb_controller.wait_till_match_any(
-					[r"template_images\gclue14.png"],[0.01],True,5,1,scope = (68,633,819,1157))
+					[r"template_images\gclue14.png"],[0.01],True,2,0,scope = (68,633,819,1157) , except_locs = matched_locs)
 				
+				if(image_processor.last_match_loc != None):
+					matched_locs.append(image_processor.last_match_loc)
+
 				if(re2 == None):
 
 					scroll_result = None
 
 					if(direction == "No" or direction == "right"):
 						scroll_result  = adb_controller.wait_to_match_and_click(
-							[r"template_images\gclue15.png"],[0.1],True,3,1,settings.accidents,scope = (635,710,1060,1253))
+							[r"template_images\gclue15.png"],[0.1],True,3,0,settings.accidents,scope = (635,710,1060,1253))
+						if (scroll_result == "success"):
+							matched_locs = []
 					else:
 						scroll_result  = adb_controller.wait_to_match_and_click(
-							[r"template_images\gclue16.png"],[0.1],True,3,1,settings.accidents,scope = (635,710,1060,1253))
+							[r"template_images\gclue16.png"],[0.1],True,3,0,settings.accidents,scope = (635,710,1060,1253))
+						if (scroll_result == "success"):
+							matched_locs = []
 
 					if(scroll_result != "success"):
 						break
@@ -796,10 +818,14 @@ def go_send_additional_clue():
 						continue
 
 				else:
-					adb_controller.click((1187,re2[1]))
-					break
+					if adb_controller.wait_till_match_any(
+					# [r"template_images\active_today.png", r"template_images\active_yesterday.png"],[0.01],True,5,0,scope = (140,640,700,835)):
+					[r"template_images\active_today.png", r"template_images\active_yesterday.png"],[0.015,0.015],True,1,0,scope = (int(re2[1]+50),int(re2[1])+130,700,835)):
+						adb_controller.click((1187,re2[1]))
+						
+					# break
 
-	re  = adb_controller.wait_to_match_and_click([r"template_images\gclue17.png"],[0.1],True,10,2,settings.accidents)
+	re  = adb_controller.wait_to_match_and_click([r"template_images\gclue17.png"],[0.1],True,5,0,settings.accidents)
 
 
 
@@ -820,7 +846,7 @@ def go_clue_get_new_clue():
 
 
 def go_clue():
-	
+
 	print("ArknightsController:Start to Go Clue -- Get in ....")
 	go_clue_get_in()
 
@@ -836,7 +862,7 @@ def go_clue():
 		re  = adb_controller.wait_to_match_and_click([r"template_images\gclue4.png"],[0.1],True,10,2,settings.accidents)
 
 	print("ArknightsController:Start to Go Clue -- Send additional clue  ....")
-	# go_send_additional_clue()
+	go_send_additional_clue()
 
 	print("ArknightsController:Start to Go Clue -- Get new clue  ....")
 	go_clue_get_new_clue()

@@ -13,12 +13,16 @@ def test():
 	# process = os.system("adb -s 127.0.0.1:62028 shell input tap 30 30")
 
 def check_internet_lag():
+	lag_timer = 1
 	while 1:
-		if not wait_till_match_any([r"template_images\internet_lag.png"],[0.4],True,1,0,log = False,scope=([625,710,600,690])):
+		if lag_timer >= 1.5:
+			lag_timer = 1.5
+		if not wait_till_match_any([r"template_images\internet_lag.png"],[0.4],True,lag_timer,0,log = False,scope=([625,710,600,690])):
 			break
 		else:
 			print("Internet lag detected!!!")
 			time.sleep(1)
+			lag_timer +=1
 			continue
 
 def swipe(from_loc,to_loc,use_time):
