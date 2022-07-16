@@ -587,10 +587,10 @@ def go_hire_crew():
 	# time.sleep(3)
 	print("ArknightsController:Try to collect crew  ....")
 	while(True):
-		re  = adb_controller.wait_to_match_and_click([r"template_images\hire2.png"],[0.1],True,5,0,settings.accidents)
+		re  = adb_controller.wait_to_match_and_click([r"template_images\hire2.png"],[0.1],True,3,0,settings.accidents)
 		if(re == "success"):
 			# time.sleep(2)
-			re2  = adb_controller.wait_to_match_and_click([r"template_images\hire3.png"],[0.1],True,5,0,settings.accidents)
+			re2  = adb_controller.wait_to_match_and_click([r"template_images\hire3.png"],[0.1],True,3,0,settings.accidents)
 			# time.sleep(2)
 			#added
 			adb_controller.click((1,1))
@@ -655,6 +655,7 @@ def go_hire_crew():
 				if set(i).issubset(five_hire_tags):
 					best_combination = i
 					print("found high priority combo: ",best_combination)
+					break#fuck i forgot to break, there fore choosing the least priority combo
 			if best_combination != []:
 				adb_controller.wait_till_match_any_text_and_click(best_combination,3,0,scope = (367,500,338,900) , chk_net = False)
 
@@ -1067,7 +1068,7 @@ while(True):
 	have_anything_to_do = False
 
 	for a_work in settings.to_do_list:
-
+		time.sleep(3)
 		exec("last_time = last_{}_time".format(a_work))
 		exec("work_cycle = settings.{}_cycle".format(a_work))
 
@@ -1099,7 +1100,7 @@ while(True):
 			print("#####################################################")
 			print("ArknightsController: Finished " + a_work + " !")
 			print("#####################################################")
-			time.sleep(3)
+			
 			#go back home page
 			print("ArknightsController: Going back home page")
 			re = adb_controller.wait_to_match_and_click([r"template_images\options.png"],[0.3],True,5,2)
