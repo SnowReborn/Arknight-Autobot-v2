@@ -22,7 +22,7 @@ recheck_time_when_no_work_to_do = 3600
 ######################### 不由 settings.txt 控制的配置 ###########################################
 
 # 公开招募时遇见以下词条则停止自动公开招募
-go_hire_stop_options = ["高级资深干员","资深干员","支援机械"]
+go_hire_stop_options = ["高级资深干员","资深干员","支援机械","高级资深壬员"]
 
 screenshot_path = r"temp_screenshot\screenshot.png"
 

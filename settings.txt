@@ -17,13 +17,13 @@ bill_address = "127.0.0.1:21583" #bill
 
 # 想跑的功能模块，且越先append的功能越优先运行
 
-# to_do_list.append("go_hire_crew")      # 自动公开招募（遇到资深干员和高级资深干员则停止，由未来手动选择）
+to_do_list.append("go_hire_crew")      # 自动公开招募（遇到资深干员和高级资深干员则停止，由未来手动选择）
 
 # to_do_list.append("go_clue")    # 处理会客室线索：上线索、足够后解锁线索、送多出2个的同种线索中一个、领新线索、。
 
 # to_do_list.append("go_visit_friends")  # 访问好友
        
-to_do_list.append("go_shop")           # 领取信用，自动买打折的商品
+# to_do_list.append("go_shop")           # 领取信用，自动买打折的商品
 
 
 to_do_list.append("go_infrastructure") # 基建收货，收信赖，傻瓜式换人

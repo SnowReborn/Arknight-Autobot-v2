@@ -563,6 +563,8 @@ def go_shop():
 def go_hire_crew():
 	# while (1):
 	# 	adb_controller.screenshot(settings.screenshot_path)
+	# 	result = image_processor.easyocr_read(settings.screenshot_path, True, scope = (367,500,338,900))
+	# 	adb_controller.screenshot(settings.screenshot_path)
 	# test = 0
 	# while(True):
 
@@ -667,7 +669,7 @@ def go_hire_crew():
 					refresh_count = image_processor.easyocr_read(settings.screenshot_path, True, scope = (72,100,870,960))[0][1]#(y1, y2, x1,x2)
 					print(refresh_count)
 					#if retry count is larger than 3 and no good tags, then refresh, otherwise, select random 3
-					if refresh_count == "联络次数3/3":
+					if refresh_count == "联络次数3/3" or refresh_count == "联络次数2/3":
 						print("using refresh to get potential better tags!")
 						# re2  = adb_controller.wait_to_match_and_click(
 						# [r"template_images\hire6.png"],[0.1],False,10,2,settings.accidents,click_offset = (195,-12))
@@ -1097,7 +1099,7 @@ while(True):
 			print("#####################################################")
 			print("ArknightsController: Finished " + a_work + " !")
 			print("#####################################################")
-
+			time.sleep(3)
 			#go back home page
 			print("ArknightsController: Going back home page")
 			re = adb_controller.wait_to_match_and_click([r"template_images\options.png"],[0.3],True,5,2)
