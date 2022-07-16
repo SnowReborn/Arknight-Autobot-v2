@@ -341,11 +341,11 @@ def go_infrastructure():
 
 def go_visit_friends():
 	print("ArknightsController:Start to visit friends  ....")
-	re  = adb_controller.wait_to_match_and_click([r"template_images\friends1.png"],[0.1],True,20,2,settings.accidents)
+	re  = adb_controller.wait_to_match_and_click([r"template_images\friends1.png"],[0.1],True,8,2,settings.accidents)
 	if(re == "restart"):return re
-	re  = adb_controller.wait_to_match_and_click([r"template_images\friends2.png"],[0.1],True,20,2,settings.accidents)
+	re  = adb_controller.wait_to_match_and_click([r"template_images\friends2.png"],[0.1],True,8,2,settings.accidents)
 	if(re == "restart"):return re
-	re  = adb_controller.wait_to_match_and_click([r"template_images\friends3.png"],[0.1],True,20,2,settings.accidents)
+	re  = adb_controller.wait_to_match_and_click([r"template_images\friends3.png"],[0.1],True,8,2,settings.accidents)
 	if(re == "restart"):return re
 
 	visit_times = 1
@@ -361,7 +361,9 @@ def go_visit_friends():
 		visit_times = visit_times + 1 
 
 	print("ArknightsController:Finished visiting friends  ....")
+	time.sleep(3)
 	return "success"
+	
 
 def go_collect_quests():
 	print("ArknightsController:Start to collect quest rewards  ....")
@@ -593,7 +595,7 @@ def go_hire_crew():
 			re2  = adb_controller.wait_to_match_and_click([r"template_images\hire3.png"],[0.1],True,3,0,settings.accidents)
 			# time.sleep(2)
 			#added
-			adb_controller.click((1,1))
+			adb_controller.click([1,1])
 			quick_check = adb_controller.wait_till_match_any(
 			[r"template_images\hire4.png"
 			,r"template_images\hire4_2.png"
@@ -960,6 +962,7 @@ def go_drone_inside():
 	re  = adb_controller.wait_to_match_and_click([r"template_images\back.png"],[0.1],True,3,1,settings.accidents)
 	# if(re != "success"):
 	# 	return "end"
+	adb_controller.click((1,1))
 
 	print("ArknightsController:Finished to speed up drones  ....")
 	return "success"
@@ -1068,7 +1071,7 @@ while(True):
 	have_anything_to_do = False
 
 	for a_work in settings.to_do_list:
-		time.sleep(3)
+		# time.sleep(3)
 		exec("last_time = last_{}_time".format(a_work))
 		exec("work_cycle = settings.{}_cycle".format(a_work))
 
