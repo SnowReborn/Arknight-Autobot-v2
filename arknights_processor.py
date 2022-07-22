@@ -170,6 +170,7 @@ def go_infrastructure():
 	re  = adb_controller.wait_to_match_and_click([r"template_images\infrastructure1.png"],[0.1],True,6,1,settings.accidents)
 	if(re == "restart"):return re
 	time.sleep(5)
+	adb_controller.click([1,1])
 	re = adb_controller.wait_till_match_any([r"template_images\infrastructure2.png"],[0.1],True,6,1)
 	if(re == "restart"):return re
 
@@ -254,7 +255,7 @@ def go_infrastructure():
 			
 
 		adb_controller.screenshot(r"temp_screenshot\last_screenshot.png")
-		adb_controller.swipe((1000,600),(1000,100),2000)
+		adb_controller.swipe((1000,600),(1000,110),2000)
 		time.sleep(1)
 		adb_controller.screenshot(r"temp_screenshot\screenshot.png")
 		if(image_processor.match_template(r"temp_screenshot\last_screenshot.png",r"temp_screenshot\screenshot.png",0.01,False) == (0,0)):
@@ -350,7 +351,7 @@ def go_visit_friends():
 
 	visit_times = 1
 	# while(visit_times < 13) and adb_controller.wait_till_match_any([r"template_images\friends_orange.png"],[0.1],True,10,2,settings.accidents):
-	while not((visit_times > 12) or adb_controller.wait_till_match_any([r"template_images\friends4.png"],[0.1],True,5,2,settings.accidents)):
+	while not((visit_times > 12) or adb_controller.wait_till_match_any([r"template_images\friends4.png"],[0.1],True,3,2,settings.accidents)):
 		# re  = adb_controller.wait_to_match_and_click([r"template_images\friends_orange.png"],[0.1],True,20,2,settings.accidents)
 		adb_controller.click((1174,632))
 
@@ -372,21 +373,21 @@ def go_collect_quests():
 	# re  = adb_controller.wait_to_match_and_click([r"template_images\quest2.png"],[0.1],True,10,1,settings.accidents)
 	# if(re == "restart"):return re
 
-	re  = adb_controller.wait_to_match_and_click([r"template_images\quest3.png"],[0.1],True,10,1,settings.accidents)
+	re  = adb_controller.wait_to_match_and_click([r"template_images\quest3.png"],[0.1],True,3,1,settings.accidents)
 	if(re == "restart"):return re
-	re  = adb_controller.wait_to_match_and_click([r"template_images\quest2.png"],[0.1],True,10,1,settings.accidents)
+	re  = adb_controller.wait_to_match_and_click([r"template_images\quest2.png"],[0.1],True,3,4,settings.accidents)
 	if(re == "restart"):return re
-	adb_controller.click([1,1])
+	re  = adb_controller.wait_to_match_and_click([r"template_images\shop7.png"],[0.1],True,3,2,settings.accidents)
 	# time.sleep(1)
-	adb_controller.click([1,1])
+	
 	# time.sleep(3)
-	re  = adb_controller.wait_to_match_and_click([r"template_images\quest4.png"],[0.1],True,10,1,settings.accidents)
+	re  = adb_controller.wait_to_match_and_click([r"template_images\quest4.png"],[0.1],True,3,1,settings.accidents)
 	if(re == "restart"):return re
-	re  = adb_controller.wait_to_match_and_click([r"template_images\quest2.png"],[0.1],True,10,1,settings.accidents)
+	re  = adb_controller.wait_to_match_and_click([r"template_images\quest2.png"],[0.1],True,3,4,settings.accidents)
 	if(re == "restart"):return re
-	adb_controller.click([1,1])
+	re  = adb_controller.wait_to_match_and_click([r"template_images\shop7.png"],[0.1],True,3,2,settings.accidents)
 	# time.sleep(1)
-	adb_controller.click([1,1])
+
 	# re  = adb_controller.wait_to_match_and_click([r"template_images\quest5.png"],[0.1],True,10,1,settings.accidents)
 	# if(re == "restart"):return re
 	# re  = adb_controller.wait_to_match_and_click([r"template_images\quest2_2.png"],[0.1],True,10,1,settings.accidents)
@@ -396,9 +397,9 @@ def go_collect_quests():
 
 def go_collect_mail():
 	print("ArknightsController:Start to collect mail  ....")
-	re  = adb_controller.wait_to_match_and_click([r"template_images\mail1.png"],[0.1],True,10,1,settings.accidents)
+	re  = adb_controller.wait_to_match_and_click([r"template_images\mail1.png"],[0.1],True,3,1,settings.accidents)
 	if(re == "restart"):return re
-	re  = adb_controller.wait_to_match_and_click([r"template_images\mail2.png"],[0.1],True,10,1,settings.accidents)
+	re  = adb_controller.wait_to_match_and_click([r"template_images\mail2.png"],[0.1],True,3,1,settings.accidents)
 	if(re == "restart"):return re
 	adb_controller.wait_to_match_and_click([r"template_images\accident_daily_gift.png"],[0.1],True,10,2)
 
@@ -564,6 +565,19 @@ def go_shop():
 
 def go_hire_crew():
 	# while (1):
+	# 	five_hire_tags= []
+	# 	best_combination = []
+	# 	adb_controller.screenshot(settings.screenshot_path)
+	# 	result = image_processor.easyocr_read(settings.screenshot_path, True, scope = (367,500,338,900))
+	# 	stop_tags = 0
+	# 	for reline in result:
+	# 		re_text = reline[1].replace(" ","")
+	# 		five_hire_tags.append(re_text)
+	# 		if reline[1] == "立即招募":
+	# 			print("matched and clicking now")
+	# 			print(reline[0][0][0])
+	# 			adb_controller.click([reline[0][0][0]+338, reline[0][0][1]+367])
+
 	# 	adb_controller.screenshot(settings.screenshot_path)
 	# 	result = image_processor.easyocr_read(settings.screenshot_path, True, scope = (367,500,338,900))
 	# 	adb_controller.screenshot(settings.screenshot_path)
@@ -624,8 +638,9 @@ def go_hire_crew():
 			,[0.05,0.05,0.05,0.05],True,5,0.5,settings.accidents)
 		if(re == "success"):
 			# time.sleep(2)
-			re2  = adb_controller.wait_to_match_and_click(
-				[r"template_images\hire5.png"],[0.1],False,4,0,settings.accidents,click_offset = (225,180),chk_net = False)
+			# re2  = adb_controller.wait_to_match_and_click(
+			# 	[r"template_images\hire5.png"],[0.1],False,4,0,settings.accidents,click_offset = (225,180),chk_net = False)
+			# putting above line before clicking hire to save time for potential refresh
 
 			#original check and stop func
 			# re2 = adb_controller.wait_till_match_any_text(settings.go_hire_stop_options,5,0,scope = (343,500,338,900))
@@ -659,15 +674,31 @@ def go_hire_crew():
 					print("found high priority combo: ",best_combination)
 					break#fuck i forgot to break, there fore choosing the least priority combo
 			if best_combination != []:
-				adb_controller.wait_till_match_any_text_and_click(best_combination,3,0,scope = (367,500,338,900) , chk_net = False)
+				# adb_controller.wait_till_match_any_text_and_click(best_combination,3,0,scope = (367,500,338,900) , chk_net = False)
+				# old method, inefficent, using OCR for the second time, below is attempt to optimize
+				for b in best_combination:
+					for r in result:
+						if r[1] in b:
+							adb_controller.click([r[0][0][0]+338, r[0][0][1]+367])
 
 			else:
 				for i in less_priority_list:
 					if set(i).issubset(five_hire_tags):
 						best_combination.append(i)
-						print("less priority combo found : ", best_combination)
-						adb_controller.wait_till_match_any_text_and_click(i,3,0,scope = (367,500,338,900) , chk_net = False)
+
+
+				if best_combination != []:
+					print("less priority combo found : ", best_combination)
+						# adb_controller.wait_till_match_any_text_and_click(i,3,0,scope = (367,500,338,900) , chk_net = False) # this uses ocr uncessarily can be optimized.
 				#new testing function to refresh if less priority tags are less than 3
+
+				# old method, inefficent, using OCR for the second time, below is attempt to optimize
+					for b in best_combination:
+						for r in result:
+
+							if r[1] in b:
+								adb_controller.click([r[0][0][0]+338, r[0][0][1]+367])
+
 				if len(best_combination) < 3:
 					refresh_count = image_processor.easyocr_read(settings.screenshot_path, True, scope = (72,100,870,960))[0][1]#(y1, y2, x1,x2)
 					print(refresh_count)
@@ -703,7 +734,10 @@ def go_hire_crew():
 				if refresh_count == "联络次数0":
 					# re2  = adb_controller.wait_to_match_and_click(
 					# [r"template_images\hire6.png"],[0.1],False,10,2,settings.accidents,click_offset = (195,-12))
-					adb_controller.wait_till_match_any_text_and_click(five_hire_tags,3,0,scope = (367,500,338,900) , chk_net = False)
+					# adb_controller.wait_till_match_any_text_and_click(five_hire_tags,3,0,scope = (367,500,338,900) , chk_net = False)
+					#above old method, inefficent, using OCR for the second time, below is attempt to optimize
+					for r in result:
+						adb_controller.click([r[0][0][0]+338, r[0][0][1]+367])
 				else:
 					re2  = adb_controller.wait_to_match_and_click(
 				[r"template_images\refresh1.png"],[0.1],True,3,0,settings.accidents)
@@ -718,6 +752,12 @@ def go_hire_crew():
 
 
 			# end of new logic
+
+			#click 9 hour
+			re2  = adb_controller.wait_to_match_and_click(
+				[r"template_images\hire5.png"],[0.1],False,4,0,settings.accidents,click_offset = (225,180),chk_net = False)
+
+			#click hire
 			re2  = adb_controller.wait_to_match_and_click(
 				[r"template_images\hire7.png"],[0.1],True,2,0,settings.accidents)
 			# time.sleep(7)
@@ -731,7 +771,9 @@ def go_clue_get_in():
 	re  = adb_controller.wait_to_match_and_click([r"template_images\gclue1.png"],[0.1],True,10,1,settings.accidents)
 	re = adb_controller.wait_till_match_any([r"template_images\gclue2.png"],[0.1],True,20,1)
 	if(re == "restart"):return re
+	adb_controller.click([1,1])#check lag
 	adb_controller.swipe((800,400),(400,400),2000)
+	adb_controller.click([1,1])#check lag
 	re  = adb_controller.wait_to_match_and_click([r"template_images\gclue3.png"],[0.1],True,10,1,settings.accidents)
 	re  = adb_controller.wait_to_match_and_click([r"template_images\gclue4.png"],[0.1],True,10,1,settings.accidents)
 	#new , check if finished exchange clue

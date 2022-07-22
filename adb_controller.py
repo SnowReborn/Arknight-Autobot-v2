@@ -186,7 +186,7 @@ def wait_till_match_any_text_and_click(aim_texts = [],max_time = 1,step_time = 1
 				# 	print("MATCHED! " + str(reline))
 				# print("k < 0")
 		for i in matched_result:
-			print("qq22222222 : "+ str(i[0][0][0]))
+			print("found targeted text , clicking : "+ str(i[0][0]))
 			click([i[0][0][0]+scope[2], i[0][0][1]+scope[0]]) #normalizing the crop
 			# click(i[0][0])
 		if chk_net == True:
