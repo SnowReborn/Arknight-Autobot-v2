@@ -679,7 +679,7 @@ def go_hire_crew():
 				for b in best_combination:
 					for r in result:
 						if r[1] in b:
-							adb_controller.click([r[0][0][0]+338, r[0][0][1]+367])
+							adb_controller.click([r[0][0][0]+338, r[0][0][1]+367],chk_net = False)
 
 			else:
 				for i in less_priority_list:
@@ -697,7 +697,7 @@ def go_hire_crew():
 						for r in result:
 
 							if r[1] in b:
-								adb_controller.click([r[0][0][0]+338, r[0][0][1]+367])
+								adb_controller.click([r[0][0][0]+338, r[0][0][1]+367],chk_net=False)
 
 				if len(best_combination) < 3:
 					refresh_count = image_processor.easyocr_read(settings.screenshot_path, True, scope = (72,100,870,960))[0][1]#(y1, y2, x1,x2)
@@ -737,7 +737,7 @@ def go_hire_crew():
 					# adb_controller.wait_till_match_any_text_and_click(five_hire_tags,3,0,scope = (367,500,338,900) , chk_net = False)
 					#above old method, inefficent, using OCR for the second time, below is attempt to optimize
 					for r in result:
-						adb_controller.click([r[0][0][0]+338, r[0][0][1]+367])
+						adb_controller.click([r[0][0][0]+338, r[0][0][1]+367] , chk_net=False)
 				else:
 					re2  = adb_controller.wait_to_match_and_click(
 				[r"template_images\refresh1.png"],[0.1],True,3,0,settings.accidents)
