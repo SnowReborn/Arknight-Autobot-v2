@@ -45,6 +45,6 @@ accidents = {
 					r"template_images\start2.png"
 					],
 			"thresholds":[0.03,0.03,0.03,0.03,0.03,0.03,0.03,0.03,0.03,0.05],
-			"methods":["click","click","restart","click","click","restart","restart","click","click","click"],
+			"methods":["click","click","restart","click","click","restart","restart","click","click","retry"],
 			"click_offset":[None,None,None,None,None,None,None,(0,-100),None,None]
 			}

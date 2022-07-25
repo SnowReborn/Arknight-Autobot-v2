@@ -564,6 +564,7 @@ def go_shop():
 	return "success"
 
 def go_hire_crew():
+
 	# while (1):
 	# 	five_hire_tags= []
 	# 	best_combination = []
@@ -1108,6 +1109,7 @@ last_go_clue_time = 0
 last_time = -1
 work_cycle = -1
 
+error = 0
 while(True):
 
 	have_anything_to_do = False
@@ -1135,9 +1137,30 @@ while(True):
 			if(re == "restart"):
 				continue
 
-			exec("last_{}_time = time.time()".format(a_work))
+			while 1:
 
-			exec("re = {}()".format(a_work))
+				try:
+					exec("last_{}_time = time.time()".format(a_work))
+					exec("re = {}()".format(a_work))
+					error = 0
+
+				except Exception as e:
+					error = 1
+
+				if error == 0:
+					break
+
+			# while error == 1:
+
+			# 	try:
+			# 		exec("last_{}_time = time.time()".format(a_work))
+			# 		exec("re = {}()".format(a_work))
+			# 		error = 0
+
+			# 	except Exception as e:
+			# 		error = 1
+
+
 
 			if(re == "restart"):
 				continue

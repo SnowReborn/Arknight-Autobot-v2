@@ -5,6 +5,8 @@ import cv2
 
 import settings
 import image_processor
+def retry():
+	raise Exception()
 
 def test():
 	# process = os.system("adb -s 127.0.0.1:62028 shell pm list packages")
@@ -79,7 +81,14 @@ def check_if_accidents(accidents , log=False):
 			if(accidents["methods"][index] == "restart"):
 				return accidents["methods"][index]
 				time.sleep(5)
+			if(accidents["methods"][index] == "retry"):
+				click(match_loc)
+				wait_till_match_any([r"template_images\gclue1.png"],[0.1],True,20,3,settings.accidents)
+				raise Exception()
+				return accidents["methods"][index]
+				time.sleep(5)
 			print("Unkonw method")
+
 			
 			return "restart"
 			time.sleep(5)

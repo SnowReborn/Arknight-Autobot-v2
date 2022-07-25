@@ -28,7 +28,7 @@ to_do_list.append("go_hire_crew")      # 自动公开招募（遇到资深干员
 # to_do_list.append("go_shop")           # 领取信用，自动买打折的商品
 
 
-# to_do_list.append("go_infrastructure") # 基建收货，收信赖，傻瓜式换人
+to_do_list.append("go_infrastructure") # 基建收货，收信赖，傻瓜式换人
 
 
 to_do_list.append("go_collect_quests") # 领取任务奖励
