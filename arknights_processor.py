@@ -164,13 +164,13 @@ crew_rects={
 
 def go_infrastructure():
 
-		
+	
 	print("ArknightsController:Start to run Infrastructure  ....")
 	#get in the Infrastructure
 	re  = adb_controller.wait_to_match_and_click([r"template_images\infrastructure1.png"],[0.1],True,6,1,settings.accidents)
 	if(re == "restart"):return re
 	time.sleep(5)
-	adb_controller.click([1,1])
+	adb_controller.click([0,0])
 	re = adb_controller.wait_till_match_any([r"template_images\infrastructure2.png"],[0.1],True,6,1)
 	if(re == "restart"):return re
 
@@ -234,13 +234,20 @@ def go_infrastructure():
 		re = "success"
 		while(re == "success"):
 			re  = adb_controller.wait_to_match_and_click([r"template_images\layoff.png"],[0.1],False,1.5,0,scope =(120,720,1170,1235),accidents = settings.accidents,except_locs = matched_locs)
-			
+			# potential optimization for faster clicking red confirm with hard code corrd
+			adb_controller.click([1279,490])
+
 			if(image_processor.last_match_loc != None):
 				matched_locs.append(image_processor.last_match_loc)
 
 			# print(image_processor.last_match_loc, " matched: ",matched_locs)
-			if re != "success":
-				re  = adb_controller.wait_to_match_and_click([r"template_images\red_confirm1.png"],[0.1],True,1,0,settings.accidents)
+
+			#very slow below, but probably more reliable.
+			# if re != "success":
+			# 	re  = adb_controller.wait_to_match_and_click([r"template_images\red_confirm1.png"],[0.1],True,1,0,settings.accidents)
+
+
+
 			# time.sleep(3)
 			# re  = adb_controller.wait_to_match_and_click(
 			# 	[r"template_images\infrastructure10.png"
@@ -453,7 +460,7 @@ def go_shop():
 			adb_controller.wait_to_match_and_click([r"template_images\shop6.png"],[0.1],True,2.5,0,settings.accidents)
 			if adb_controller.wait_till_match_any([r"template_images\shop6.png"],[0.1],True,1,0,settings.accidents):
 				print("NOT enough credit!")
-				adb_controller.click([1,1])
+				adb_controller.click([0,0])
 				break
 			# time.sleep(2)
 			adb_controller.wait_to_match_and_click([r"template_images\shop7.png"],[0.1],True,2.5,0,settings.accidents)
@@ -465,7 +472,7 @@ def go_shop():
 			adb_controller.wait_to_match_and_click([r"template_images\shop6.png"],[0.1],True,2.5,0,settings.accidents)
 			if adb_controller.wait_till_match_any([r"template_images\shop6.png"],[0.1],True,1,0,settings.accidents):
 				print("NOT enough credit!")
-				adb_controller.click([1,1])
+				adb_controller.click([0,0])
 				break
 			# time.sleep(2)
 			adb_controller.wait_to_match_and_click([r"template_images\shop7.png"],[0.1],True,2.5,0,settings.accidents)
@@ -610,7 +617,7 @@ def go_hire_crew():
 			re2  = adb_controller.wait_to_match_and_click([r"template_images\hire3.png"],[0.1],True,3,0,settings.accidents)
 			# time.sleep(2)
 			#added
-			adb_controller.click([1,1])
+			adb_controller.click([1,50])
 			quick_check = adb_controller.wait_till_match_any(
 			[r"template_images\hire4.png"
 			,r"template_images\hire4_2.png"
@@ -618,7 +625,7 @@ def go_hire_crew():
 			,r"template_images\hire4_4.png"]
 			,[0.1,0.1,0.1,0.1],True,2,0,settings.accidents)
 			while (quick_check == None):
-				adb_controller.click((1,1))
+				adb_controller.click([1,50])
 				quick_check = adb_controller.wait_till_match_any(
 				[r"template_images\hire4.png"
 				,r"template_images\hire4_2.png"
@@ -710,7 +717,7 @@ def go_hire_crew():
 						# [r"template_images\hire6.png"],[0.1],False,10,2,settings.accidents,click_offset = (195,-12))
 
 						re2  = adb_controller.wait_to_match_and_click(
-					[r"template_images\refresh1.png"],[0.1],True,3,0,settings.accidents)
+					[r"template_images\refresh1.png"],[0.1],True,3,0,settings.accidents,chk_net=False)
 						re2  = adb_controller.wait_to_match_and_click(
 					[r"template_images\red_confirm1.png"],[0.1],True,3,0,settings.accidents)
 						# time.sleep(3)
@@ -772,9 +779,9 @@ def go_clue_get_in():
 	re  = adb_controller.wait_to_match_and_click([r"template_images\gclue1.png"],[0.1],True,10,1,settings.accidents)
 	re = adb_controller.wait_till_match_any([r"template_images\gclue2.png"],[0.1],True,20,1)
 	if(re == "restart"):return re
-	adb_controller.click([1,1])#check lag
+	adb_controller.click([0,0])#check lag
 	adb_controller.swipe((800,400),(400,400),2000)
-	adb_controller.click([1,1])#check lag
+	adb_controller.click([0,0])#check lag
 	re  = adb_controller.wait_to_match_and_click([r"template_images\gclue3.png"],[0.1],True,10,1,settings.accidents)
 	re  = adb_controller.wait_to_match_and_click([r"template_images\gclue4.png"],[0.1],True,10,1,settings.accidents)
 	#new , check if finished exchange clue
@@ -798,7 +805,7 @@ def go_clue_get_on_clue():
 		if(re == None):
 			adb_controller.click((1094,238))
 		# time.sleep(2)
-	re= adb_controller.click([1,1])
+	re= adb_controller.click([0,0])
 	#originally back then enter again
 	# re  = adb_controller.wait_to_match_and_click([r"template_images\gclue11.png"],[0.1],True,10,2,settings.accidents)
 	# re  = adb_controller.wait_to_match_and_click([r"template_images\gclue4.png"],[0.1],True,10,2,settings.accidents)
@@ -887,7 +894,7 @@ def go_clue_get_new_clue():
 			re  = adb_controller.wait_to_match_and_click([
 				r"template_images\gclue10.png",r"template_images\gclue10_1.png"],[0.1,0.1],True,10,2,settings.accidents)
 			# time.sleep(5)
-			adb_controller.click([1,1])#go back to previous screen if needed
+			adb_controller.click([0,0])#go back to previous screen if needed
 			# time.sleep(2)
 		else:
 			break;
@@ -1005,7 +1012,7 @@ def go_drone_inside():
 	re  = adb_controller.wait_to_match_and_click([r"template_images\back.png"],[0.1],True,3,1,settings.accidents)
 	# if(re != "success"):
 	# 	return "end"
-	adb_controller.click((1,1))
+	adb_controller.click((0,0))
 
 	print("ArknightsController:Finished to speed up drones  ....")
 	return "success"
