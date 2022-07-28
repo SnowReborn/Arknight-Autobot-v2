@@ -233,9 +233,10 @@ def go_infrastructure():
 		matched_locs = []
 		re = "success"
 		while(re == "success"):
-			re  = adb_controller.wait_to_match_and_click([r"template_images\layoff.png"],[0.1],False,1.5,0,scope =(120,720,1170,1235),accidents = settings.accidents,except_locs = matched_locs)
+			re  = adb_controller.wait_to_match_and_click([r"template_images\layoff.png"],[0.1],False,1.5,0,scope =(120,720,1170,1235),accidents = settings.accidents,except_locs = matched_locs,chk_net = False)
 			# potential optimization for faster clicking red confirm with hard code corrd
-			adb_controller.click([1279,490])
+			if re == "success" :
+				adb_controller.click([1279,490])
 
 			if(image_processor.last_match_loc != None):
 				matched_locs.append(image_processor.last_match_loc)
@@ -805,7 +806,7 @@ def go_clue_get_on_clue():
 		if(re == None):
 			adb_controller.click((1094,238))
 		# time.sleep(2)
-	re= adb_controller.click([0,0])
+	re= adb_controller.click([1,1])
 	#originally back then enter again
 	# re  = adb_controller.wait_to_match_and_click([r"template_images\gclue11.png"],[0.1],True,10,2,settings.accidents)
 	# re  = adb_controller.wait_to_match_and_click([r"template_images\gclue4.png"],[0.1],True,10,2,settings.accidents)
@@ -894,7 +895,7 @@ def go_clue_get_new_clue():
 			re  = adb_controller.wait_to_match_and_click([
 				r"template_images\gclue10.png",r"template_images\gclue10_1.png"],[0.1,0.1],True,10,2,settings.accidents)
 			# time.sleep(5)
-			adb_controller.click([0,0])#go back to previous screen if needed
+			adb_controller.click([1,1])#go back to previous screen if needed
 			# time.sleep(2)
 		else:
 			break;
