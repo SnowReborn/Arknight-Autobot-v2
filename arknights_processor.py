@@ -232,6 +232,7 @@ def go_infrastructure():
 		#revised instead of clicking each operator, lay off entire row
 		matched_locs = []
 		re = "success"
+		time.sleep(1)
 		while(re == "success"):
 			re  = adb_controller.wait_to_match_and_click([r"template_images\layoff.png"],[0.1],False,1.5,0,scope =(120,720,1170,1235),accidents = settings.accidents,except_locs = matched_locs,chk_net = False)
 			# potential optimization for faster clicking red confirm with hard code corrd
@@ -1181,6 +1182,8 @@ while(True):
 			print("ArknightsController: Going back home page")
 			re = adb_controller.wait_to_match_and_click([r"template_images\options.png"],[0.3],True,5,2)
 			re = adb_controller.wait_to_match_and_click([r"template_images\home_option.png"],[0.3],True,5,2)
+			time.sleep(3)
+			adb_controller.click([0,0])
 			# time.sleep(5)
 
 			if have_anything_to_do == False:
