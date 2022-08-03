@@ -625,7 +625,7 @@ def go_hire_crew():
 			,r"template_images\hire4_2.png"
 			,r"template_images\hire4_3.png"
 			,r"template_images\hire4_4.png"]
-			,[0.1,0.1,0.1,0.1],True,2,0,settings.accidents)
+			,[0.04,0.04,0.04,0.04],True,2,0,settings.accidents)
 			while (quick_check == None):
 				adb_controller.click([1,50])
 				quick_check = adb_controller.wait_till_match_any(
@@ -633,10 +633,10 @@ def go_hire_crew():
 				,r"template_images\hire4_2.png"
 				,r"template_images\hire4_3.png"
 				,r"template_images\hire4_4.png"]
-				,[0.1,0.1,0.1,0.1],True,5,0,settings.accidents)
+				,[0.04,0.04,0.04,0.04],True,5,0,settings.accidents)
 
-				if quick_check != None:
-					break
+		else:
+			break
 
 	print("ArknightsController:Try to begin collect crew  ....")
 	while(True):
