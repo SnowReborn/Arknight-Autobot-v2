@@ -635,8 +635,8 @@ def go_hire_crew():
 				,r"template_images\hire4_4.png"]
 				,[0.1,0.1,0.1,0.1],True,5,0,settings.accidents)
 
-		else:
-			break
+				if quick_check != None:
+					break
 
 	print("ArknightsController:Try to begin collect crew  ....")
 	while(True):
