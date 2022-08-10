@@ -42,9 +42,10 @@ accidents = {
 					r"template_images\accident_no_cp_2.png",
 					r"template_images\accident_shop_tip1.png",
 					r"template_images\accident_gift2.png",
-					r"template_images\start2.png"
+					r"template_images\start2.png",
+					r"template_images\disconnect_confirm.png"
 					],
-			"thresholds":[0.03,0.03,0.03,0.03,0.03,0.03,0.03,0.03,0.03,0.05],
-			"methods":["click","click","restart","click","click","restart","restart","click","click","retry"],
-			"click_offset":[None,None,None,None,None,None,None,(0,-100),None,None]
+			"thresholds":[0.03,0.03,0.03,0.03,0.03,0.03,0.03,0.03,0.03,0.05,0.05],
+			"methods":["click","click","restart","click","click","restart","restart","click","click","retry","click"],
+			"click_offset":[None,None,None,None,None,None,None,(0,-100),None,None,None]
 			}
