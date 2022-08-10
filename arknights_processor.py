@@ -234,7 +234,7 @@ def go_infrastructure():
 		re = "success"
 		time.sleep(1)
 		while(re == "success"):
-			re  = adb_controller.wait_to_match_and_click([r"template_images\layoff.png"],[0.37],False,1.5,0,scope =(120,720,1170,1235),accidents = settings.accidents,except_locs = matched_locs,chk_net = False)
+			re  = adb_controller.wait_to_match_and_click([r"template_images\layoff.png"],[0.2],False,1.5,0,scope =(120,720,1170,1235),accidents = settings.accidents,except_locs = matched_locs,chk_net = False)
 			# potential optimization for faster clicking red confirm with hard code corrd
 			if(image_processor.last_match_loc != None):
 				matched_locs.append(image_processor.last_match_loc)

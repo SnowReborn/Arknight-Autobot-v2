@@ -19,7 +19,7 @@ bill_address = "127.0.0.1:21583" #bill
 
 
 
-# to_do_list.append("go_hire_crew")      # 自动公开招募（遇到资深干员和高级资深干员则停止，由未来手动选择）
+to_do_list.append("go_hire_crew")      # 自动公开招募（遇到资深干员和高级资深干员则停止，由未来手动选择）
 
 # to_do_list.append("go_clue")    # 处理会客室线索：上线索、足够后解锁线索、送多出2个的同种线索中一个、领新线索、。
 
