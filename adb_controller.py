@@ -87,7 +87,7 @@ def check_if_accidents(accidents , log=False):
 				print("Game disconnected, attempt to reconnect")
 				click(match_loc)
 				wait_till_match_any([r"template_images\gclue1.png"],[0.1],True,80,3,settings.accidents)
-				click([1,200])
+				click([1,500]) #check lag
 				time.sleep(5)
 				raise Exception()
 				return accidents["methods"][index]
