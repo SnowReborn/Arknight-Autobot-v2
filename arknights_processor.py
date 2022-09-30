@@ -626,7 +626,7 @@ def go_hire_crew():
 			,r"template_images\hire4_3.png"
 			,r"template_images\hire4_4.png"
 			,r"template_images\hire3.png"]
-			,[0.04,0.04,0.04,0.04],True,2,0,settings.accidents)
+			,[0.04,0.04,0.04,0.04,0.04],True,2,0)
 			while (quick_check == None):
 				adb_controller.click([1,50])
 				quick_check = adb_controller.wait_till_match_any(
@@ -634,7 +634,7 @@ def go_hire_crew():
 				,r"template_images\hire4_2.png"
 				,r"template_images\hire4_3.png"
 				,r"template_images\hire4_4.png"]
-				,[0.04,0.04,0.04,0.04],True,5,0,settings.accidents)
+				,[0.04,0.04,0.04,0.04,0.04],True,5,0)
 
 		else:
 			break
