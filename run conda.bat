@@ -1,4 +1,4 @@
-call E:\Anaconda\Scripts\activate.bat arkbot
+call E:\Anaconda\Scripts\activate.bat arkbotv2
 
 
 
