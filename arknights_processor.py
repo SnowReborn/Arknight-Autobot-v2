@@ -672,7 +672,8 @@ def go_hire_crew():
 				five_hire_tags.append(re_text)
 			#new stop trigger func
 			for i in settings.go_hire_stop_options:
-				if i in five_hire_tags:
+				#if i in five_hire_tags:
+				if any(i in t for t in five_hire_tags):
 					print("ArknightsController:Found stop option in {},so stop".format(str(settings.go_hire_stop_options)))
 					stop_tags = 1
 

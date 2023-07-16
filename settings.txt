@@ -2,16 +2,16 @@
 # 所以可以用#来写注释，或者使某行配置无效
 
 # adb.exe 的路径，夜神模拟器安装路径下的bin文件夹里面有,参照以下格式，修改双引号内的就ok
-adb_path = "E:\Games\Android Emulator\Memu\Microvirt\MEmu\adb.exe"
+adb_path = "E:\Games\Android Emulator\Memu v9\Microvirt\MEmu\adb.exe"
 
 # 模拟器的地址
-device_address = "127.0.0.1:21513" #default single
-main_address = "127.0.0.1:21513" #main
-chenrui_address = "127.0.0.1:21523" #chenrui
-connor_address = "127.0.0.1:21533" #connor
-sam_address = "127.0.0.1:21553" #sam
-math_address = "127.0.0.1:21573" #math
-bill_address = "127.0.0.1:21583" #bill
+device_address = "127.0.0.1:22513" #default single
+main_address = "127.0.0.1:22513" #main
+chenrui_address = "127.0.0.1:22523" #chenrui
+connor_address = "127.0.0.1:22533" #connor
+sam_address = "127.0.0.1:22543" #sam
+math_address = "127.0.0.1:22553" #math
+bill_address = "127.0.0.1:22563" #bill
 
 
 
@@ -19,19 +19,19 @@ bill_address = "127.0.0.1:21583" #bill
 
 
 
-# to_do_list.append("go_hire_crew")      # 自动公开招募（遇到资深干员和高级资深干员则停止，由未来手动选择）
+to_do_list.append("go_hire_crew")      # 自动公开招募（遇到资深干员和高级资深干员则停止，由未来手动选择）
 
-# to_do_list.append("go_clue")    # 处理会客室线索：上线索、足够后解锁线索、送多出2个的同种线索中一个、领新线索、。
+to_do_list.append("go_clue")    # 处理会客室线索：上线索、足够后解锁线索、送多出2个的同种线索中一个、领新线索、。
 
-# to_do_list.append("go_visit_friends")  # 访问好友
+to_do_list.append("go_visit_friends")  # 访问好友
        
 to_do_list.append("go_shop")           # 领取信用，自动买打折的商品
 
 
-# to_do_list.append("go_infrastructure") # 基建收货，收信赖，傻瓜式换人
+to_do_list.append("go_infrastructure") # 基建收货，收信赖，傻瓜式换人
 
 
-# to_do_list.append("go_collect_quests") # 领取任务奖励
+to_do_list.append("go_collect_quests") # 领取任务奖励
 
 
 
