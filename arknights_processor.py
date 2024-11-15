@@ -10,6 +10,10 @@ import ctypes
 import settings
 import image_processor
 import adb_controller
+import datetime
+import json
+
+
 
 '''
 version 1
@@ -33,6 +37,39 @@ hiring_priority_list += ['特种干员', '近战位', '控场'], ['特种干员'
 # hiring_priority_list2 += [['辅助干员', '远程位', '削弱'], ['辅助干员', '远程位', '召唤'], ['辅助干员', '控场', '减速'], ['辅助干员', '控场', '召唤'], ['辅助干员', '输出', '减速'], ['特种干员', '近战位', '控场'], ['特种干员', '近战位', '输出'], ['特种干员', '近战位', '生存'], ['特种干员', '近战位', '减速'], ['特种干员', '近战位', '削弱'], ['特种干员', '控场', '快速复活'], ['特种干员', '输出', '生存'], ['特种干员', '输出', '位移'], ['特种干员', '减速', '位移'], ['特种干员', '削弱', '快速复活'], ['先锋干员', '近战位', '控场'], ['先锋干员', '近战位', '支援'], ['先锋干员', '控场', '费用回复'], ['先锋干员', '支援', '费用回复'], ['近战位', '控场', '费用回复'], ['近战位', '控场', '快速复活'], ['近战位', '支援', '费用回复'], ['近战位', '输出', '防护'], ['近战位', '输出', '位移'], ['近战位', '生存', '防护'], ['近战位', '防护', '位移'], ['近战位', '减速', '位移'], ['近战位', '削弱', '快速复活'], ['远程位', '控场', '减速'], ['远程位', '控场', '召唤'], ['远程位', '爆发', '输出'], ['远程位', '群攻', '削弱'], ['输出', '生存', '防护'], ['特种干员'], ['支援'], ['削弱'], ['快速复活'], ['位移'], ['近卫干员', '支援'], ['近卫干员', '减速'], ['狙击干员', '生存'], ['狙击干员', '群攻'], ['狙击干员', '减速'], ['狙击干员', '削弱'], ['医疗干员', '支援'], ['术师干员', '减速']]
 
 less_priority_list = [["减速"], ["生存"], ["防护"], ["费用回复"], ["治疗"], ["输出"],["群攻"]]
+
+	
+	
+	
+def task_awareness(task):
+    time_now = datetime.datetime.now()
+    refresh_time = time_now.replace(hour=12, minute=0, second=0, microsecond=0)
+
+    try:
+        with open("ran_today.json", "r") as f:
+            data = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        data = {}
+
+    last_run_str = data.get(str(task), "2000-01-01 00:00:00")
+    last_run_time = datetime.datetime.strptime(last_run_str, "%Y-%m-%d %H:%M:%S")
+    
+    return last_run_time < refresh_time
+
+def update_task_time(task):
+    try:
+        with open("ran_today.json", "r") as f:
+            data = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        data = {}
+
+    data[task] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    with open("ran_today.json", "w") as f:
+        json.dump(data, f)
+
+
+
 
 def stop_app():
 	print("ArknightsController:Stop the App  ....")
@@ -358,6 +395,9 @@ def go_infrastructure():
 	return "success"
 
 def go_visit_friends():
+	if not task_awareness("go_visit_friends"):
+		print("Today has already done task")
+		return 0
 	print("ArknightsController:Start to visit friends  ....")
 	re  = adb_controller.wait_to_match_and_click([r"template_images\friends1.png"],[0.1],True,8,2,settings.accidents)
 	if(re == "restart"):return re
@@ -379,6 +419,7 @@ def go_visit_friends():
 		visit_times = visit_times + 1 
 
 	print("ArknightsController:Finished visiting friends  ....")
+	update_task_time("go_visit_friends")
 	time.sleep(3)
 	return "success"
 	
@@ -424,6 +465,9 @@ def go_collect_mail():
 	return "success"
 
 def go_shop():
+	if not task_awareness("go_shop"):
+		print("Today has already done task")
+		return 0
 	print("ArknightsController:Start to go shop  ....")
 	re  = adb_controller.wait_to_match_and_click([r"template_images\shop1.png"],[0.1],True,5,2,settings.accidents)
 	if(re == "restart"):return re
@@ -578,6 +622,7 @@ def go_shop():
 		break
 
 	print("ArknightsController:Finished to shop  ....")
+	update_task_time("go_shop")
 	return "success"
 
 def go_hire_crew():
@@ -913,7 +958,9 @@ def go_clue_get_new_clue():
 
 
 def go_clue():
-
+	if not task_awareness("go_clue"):
+		print("Done task already today")
+		return 0
 	print("ArknightsController:Start to Go Clue -- Get in ....")
 	go_clue_get_in()
 
@@ -935,6 +982,7 @@ def go_clue():
 	go_clue_get_new_clue()
 
 	print("ArknightsController:Finished to Go Clue  ....")
+	update_task_time("go_clue")
 	return "success"
 
 def go_drone():
