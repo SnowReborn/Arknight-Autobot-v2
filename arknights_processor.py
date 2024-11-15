@@ -219,26 +219,32 @@ def go_infrastructure():
 		re = go_drone_inside()
 
 	print("ArknightsController:Change the Crew  ....")
-	re  = adb_controller.wait_to_match_and_click([r"template_images\infrastructure8.png"],[0.1],True,3,0,accidents = settings.accidents)
+	re  = adb_controller.wait_to_match_and_click([r"template_images\infrastructure2.png"],[0.1],True,3,0,accidents = settings.accidents)
 	time.sleep(2)
 
 
-	#remove first row to preserve 永动车
-	adb_controller.swipe((1000,600),(1000,400),2000)
+	#remove first row to preserve 永动车 deprecated
+	# adb_controller.swipe((1000,600),(1000,400),2000)
 	#Get Down
-	re  = adb_controller.wait_to_match_and_click([r"template_images\infrastructure9.png"],[0.1],True,5,0,accidents = settings.accidents)
+
+	#2024-11-14 new base update overhauled entire system , some old function will be deprecated..
+	# re  = adb_controller.wait_to_match_and_click([r"template_images\infrastructure9.png"],[0.1],True,5,0,accidents = settings.accidents)
+	# ^^ deprecated 2024-11-14 
 	while(True):#scoll
 		#revised instead of clicking each operator, lay off entire row
 		matched_locs = []
 		re = "success"
 		time.sleep(1)
 		while(re == "success"):
-			re  = adb_controller.wait_to_match_and_click([r"template_images\layoff.png"],[0.2],False,1.5,0,scope =(120,720,1170,1235),accidents = settings.accidents,except_locs = matched_locs,chk_net = False)
-			# potential optimization for faster clicking red confirm with hard code corrd
-			if(image_processor.last_match_loc != None):
-				matched_locs.append(image_processor.last_match_loc)
-			if re == "success" :
-				adb_controller.click([1279,490])
+			last_clicked_location = []
+			re  = adb_controller.wait_to_match_and_click([r"template_images\layoff.png"],[0.2],False,1.5,0,scope =(120,720,1170,1235),accidents = settings.accidents,except_locs = matched_locs,chk_net = False, last_clicked_location = last_clicked_location)
+			# potential optimization for faster clicking red confirm with hard code corrd / layoff.png changed to swap
+			if(last_clicked_location != None):
+				# matched_locs.append(image_processor.last_match_loc)
+			#issues with updated location from itnernmet lag check, fixed below
+				matched_locs.append(last_clicked_location)
+			# if re == "success" :
+			# 	adb_controller.click([1279,490])
 
 			
 
@@ -264,8 +270,9 @@ def go_infrastructure():
 			
 
 		adb_controller.screenshot(r"temp_screenshot\last_screenshot.png")
-		adb_controller.swipe((1000,600),(1000,110),2000)
-		time.sleep(1)
+		adb_controller.instant_swipe((1000,600),(1000,150))
+		adb_controller.instant_swipe((1000,600),(1001,600))
+
 		adb_controller.screenshot(r"temp_screenshot\screenshot.png")
 		if(image_processor.match_template(r"temp_screenshot\last_screenshot.png",r"temp_screenshot\screenshot.png",0.01,False) == (0,0)):
 			break
@@ -277,75 +284,76 @@ def go_infrastructure():
 	print("ArknightsController:Start to Station the Crew  ....")
 
 	print("ArknightsController:Get Out  ....")
+	## changing inffra 7 8 picture to retrofit new updated base system 2024-11-14 
 	re = adb_controller.wait_to_match_and_click([r"template_images\infrastructure7.png"],[0.1],True,5,0,settings.accidents)
 	print("ArknightsController:Get In  ....")
 	re  = adb_controller.wait_to_match_and_click([r"template_images\infrastructure8.png"],[0.1],True,5,0,accidents = settings.accidents)
-
+###
 	#Get On
-	while(True):#Repeat Scorll
-		matched_locs = []
-		re = "success"
-		while(re == "success"):
-			# adb_controller.screenshot(r"temp_screenshot\last_screenshot.png")
-			re  = adb_controller.wait_to_match_and_click(
-				[r"template_images\infrastructure13.png"
-				,r"template_images\infrastructure13_2.png"
-				,r"template_images\infrastructure13_3.png"
-				,r"template_images\infrastructure13_4.png"
-				,r"template_images\infrastructure13_5.png"
-				,r"template_images\infrastructure13_6.png"
-				],[0.02,0.02,0.02,0.02,0.02,0.02],True,3,0
-				,accidents = settings.accidents,scope = (118,720,618,1226),except_locs = matched_locs)
+	# while(True):#Repeat Scorll
+	# 	matched_locs = []
+	# 	re = "success"
+	# 	while(re == "success"):
+	# 		# adb_controller.screenshot(r"temp_screenshot\last_screenshot.png")
+	# 		re  = adb_controller.wait_to_match_and_click(
+	# 			[r"template_images\infrastructure13.png"
+	# 			,r"template_images\infrastructure13_2.png"
+	# 			,r"template_images\infrastructure13_3.png"
+	# 			,r"template_images\infrastructure13_4.png"
+	# 			,r"template_images\infrastructure13_5.png"
+	# 			,r"template_images\infrastructure13_6.png"
+	# 			],[0.02,0.02,0.02,0.02,0.02,0.02],True,3,0
+	# 			,accidents = settings.accidents,scope = (118,720,618,1226),except_locs = matched_locs)
 			
-			if(re == "success"):
-				matched_locs.append(image_processor.last_match_loc)
-				# print("KKK:"+str(matched_locs))
-				# time.sleep(2)
-				clicked_nums = 0
-				for rect_index in range(0,len(crew_rects["up_left_loc"])):
-					print("ArknightsController: Check rect_index = "+str(rect_index))
-					re2 = adb_controller.wait_till_match_any(
-						[r"template_images\infrastructure16.png"
-						,r"template_images\infrastructure16_2.png"
-						,r"template_images\infrastructure16_3.png"
-						,r"template_images\infrastructure16_4.png"
-						,r"template_images\infrastructure16_5.png"
-						,r"template_images\infrastructure16_6.png"
-						,r"template_images\infrastructure16_7.png"
-						,r"template_images\alt_operator.png"]
-						,[0.05,0.05,0.05,0.05,0.02,0.1,0.1,0.35],True,1,0,scope = (
-							crew_rects["up_left_loc"][rect_index][1]-40
-							,crew_rects["up_left_loc"][rect_index][1] + crew_rects["height"]
-							,crew_rects["up_left_loc"][rect_index][0]-40
-							,crew_rects["up_left_loc"][rect_index][0] + crew_rects["witdth"]
-							)
-						)
-					if(re2 != None):
-						print("ArknightsController: Crew "+str(rect_index)+" is already in work/rest")
-						continue
-					adb_controller.click((crew_rects["up_left_loc"][rect_index][0] + crew_rects["witdth"]/2
-						,crew_rects["up_left_loc"][rect_index][1] + crew_rects["height"]/2) , chk_net = False)
-					clicked_nums = clicked_nums + 1
-					if(clicked_nums >= 5):
-						break
+	# 		if(re == "success"):
+	# 			matched_locs.append(image_processor.last_match_loc)
+	# 			# print("KKK:"+str(matched_locs))
+	# 			# time.sleep(2)
+	# 			clicked_nums = 0
+	# 			for rect_index in range(0,len(crew_rects["up_left_loc"])):
+	# 				print("ArknightsController: Check rect_index = "+str(rect_index))
+	# 				re2 = adb_controller.wait_till_match_any(
+	# 					[r"template_images\infrastructure16.png"
+	# 					,r"template_images\infrastructure16_2.png"
+	# 					,r"template_images\infrastructure16_3.png"
+	# 					,r"template_images\infrastructure16_4.png"
+	# 					,r"template_images\infrastructure16_5.png"
+	# 					,r"template_images\infrastructure16_6.png"
+	# 					,r"template_images\infrastructure16_7.png"
+	# 					,r"template_images\alt_operator.png"]
+	# 					,[0.05,0.05,0.05,0.05,0.02,0.1,0.1,0.35],True,1,0,scope = (
+	# 						crew_rects["up_left_loc"][rect_index][1]-40
+	# 						,crew_rects["up_left_loc"][rect_index][1] + crew_rects["height"]
+	# 						,crew_rects["up_left_loc"][rect_index][0]-40
+	# 						,crew_rects["up_left_loc"][rect_index][0] + crew_rects["witdth"]
+	# 						)
+	# 					)
+	# 				if(re2 != None):
+	# 					print("ArknightsController: Crew "+str(rect_index)+" is already in work/rest")
+	# 					continue
+	# 				adb_controller.click((crew_rects["up_left_loc"][rect_index][0] + crew_rects["witdth"]/2
+	# 					,crew_rects["up_left_loc"][rect_index][1] + crew_rects["height"]/2) , chk_net = False)
+	# 				clicked_nums = clicked_nums + 1
+	# 				if(clicked_nums >= 5):
+	# 					break
 
-				print("ArknightsController: Current Crew have stationed")
+	# 			print("ArknightsController: Current Crew have stationed")
 
-				re2  = adb_controller.wait_to_match_and_click(
-					[r"template_images\infrastructure15.png"
-					,r"template_images\infrastructure15_2.png"
-					],[0.1,0.1],True,5,0,accidents = settings.accidents)
-				# time.sleep(4)
+	# 			re2  = adb_controller.wait_to_match_and_click(
+	# 				[r"template_images\infrastructure15.png"
+	# 				,r"template_images\infrastructure15_2.png"
+	# 				],[0.1,0.1],True,5,0,accidents = settings.accidents)
+	# 			# time.sleep(4)
 
-		adb_controller.screenshot(r"temp_screenshot\last_screenshot.png")
-		time.sleep(2)
-		adb_controller.swipe((1000,600),(1000,150),2000)
-		time.sleep(1)
-		adb_controller.screenshot(r"temp_screenshot\screenshot.png")
+	# 	adb_controller.screenshot(r"temp_screenshot\last_screenshot.png")
+	# 	time.sleep(2)
+	# 	adb_controller.swipe((1000,600),(1000,150),2000)
+	# 	time.sleep(1)
+	# 	adb_controller.screenshot(r"temp_screenshot\screenshot.png")
 
-		if(image_processor.match_template(r"temp_screenshot\last_screenshot.png",r"temp_screenshot\screenshot.png",0.01,False) == (0,0)):
-			break
-
+	# 	if(image_processor.match_template(r"temp_screenshot\last_screenshot.png",r"temp_screenshot\screenshot.png",0.01,False) == (0,0)):
+	# 		break
+### ^^ deprecated 2024-11-14 
 	print("ArknightsController:Finished go infrastructure  ....")
 	return "success"
 
@@ -1158,7 +1166,7 @@ while(True):
 
 				except Exception as e:
 					error = 1
-
+					print(e)
 				if error == 0:
 					break
 

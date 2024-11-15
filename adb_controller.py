@@ -33,6 +33,12 @@ def swipe(from_loc,to_loc,use_time):
 		+str(from_loc[0])+" "+str(from_loc[1])+" "+str(to_loc[0])+" "+str(to_loc[1])+" "+str(use_time))
 	time.sleep(use_time/1000)
 	time.sleep(2)
+#2024-11-14 instnat swipe for new impelmented
+def instant_swipe(from_loc,to_loc):
+	print("AdbController:Swipe from "+str(from_loc)+" to "+str(to_loc))
+	process = os.system("\""+settings.adb_path+"\""+" -s "+settings.device_address+" shell input swipe "
+		+str(from_loc[0])+" "+str(from_loc[1])+" "+str(to_loc[0])+" "+str(to_loc[1]))
+
 
 def stop_app():
 	
@@ -127,19 +133,25 @@ def wait_till_match_any(template_paths,thresholds,return_center,max_time,step_ti
 #any
 def wait_to_match_and_click(
 	template_paths,thresholds,return_center,max_time,step_time,accidents = None,click_offset = None,scope = None,except_locs = None
-	, chk_net = True):
+	, chk_net = True , last_clicked_location = []):
 	re = wait_till_match_any(template_paths,thresholds,return_center,max_time,step_time,accidents,scope = scope,except_locs = except_locs)
 	if(re == "restart"):
-		return "restart"
+		return "restart" 
 	if(re == None):
 		print("Cannot find "+str(template_paths))
-		return "failed"
+		return "failed" 
 	if(click_offset != None):
 		re = (re[0]+click_offset[0],re[1]+click_offset[1])
 	click(re)
+	#true last_min_lock_before_internet_check
+	if scope != None:
+		last_clicked_location.extend([re[0]-scope[2], re[1] - scope[0]])
+	else:
+		last_clicked_location.extend([re[0],re[1]])
+	#GAAAAAAAAAAAA
 	if chk_net == True:
 		check_internet_lag()
-	return "success"
+	return "success" 
 
 #match any
 def wait_while_match(template_paths,thresholds,max_time,step_time,accidents = None,scope = None,except_locs = None):

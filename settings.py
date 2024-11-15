@@ -28,7 +28,7 @@ screenshot_path = r"temp_screenshot\screenshot.png"
 
 last_screenshot_path = r"temp_screenshot\last_screenshot.png"
 
-except_dist = 5
+except_dist = 10
 
 package_name = "com.hypergryph.arknights"
 
