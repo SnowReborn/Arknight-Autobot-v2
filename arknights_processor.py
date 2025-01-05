@@ -42,31 +42,37 @@ less_priority_list = [["减速"], ["生存"], ["防护"], ["费用回复"], ["�
 	
 	
 def task_awareness(task):
-    time_now = datetime.datetime.now()
-    refresh_time = time_now.replace(hour=12, minute=0, second=0, microsecond=0)
+	time_now = datetime.datetime.now()
+	
 
-    try:
-        with open("ran_today.json", "r") as f:
-            data = json.load(f)
-    except (FileNotFoundError, json.JSONDecodeError):
-        data = {}
+	try:
+		with open("ran_today.json", "r") as f:
+			data = json.load(f)
+	except (FileNotFoundError, json.JSONDecodeError):
+		data = {}
 
-    last_run_str = data.get(str(task), "2000-01-01 00:00:00")
-    last_run_time = datetime.datetime.strptime(last_run_str, "%Y-%m-%d %H:%M:%S")
-    
-    return last_run_time < refresh_time
+	last_run_str = data.get(str(task), "2000-01-01 00:00:00")
+	refresh_time = datetime.datetime.strptime(last_run_str, "%Y-%m-%d %H:%M:%S")
+	
+	return refresh_time >= time_now
 
 def update_task_time(task):
-    try:
-        with open("ran_today.json", "r") as f:
-            data = json.load(f)
-    except (FileNotFoundError, json.JSONDecodeError):
-        data = {}
+	time_now = datetime.datetime.now()
+	try:
+		with open("ran_today.json", "r") as f:
+			data = json.load(f)
+	except (FileNotFoundError, json.JSONDecodeError):
+		data = {}
 
-    data[task] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+	if time_now.hour < 12:
+		refresh_time = time_now.replace(hour=12, minute=0, second=0, microsecond=0)
+	else:
+		refresh_time = time_now.replace(hour=12, minute=0, second=0, microsecond=0) + datetime.timedelta(days=1)
 
-    with open("ran_today.json", "w") as f:
-        json.dump(data, f)
+	data[task] = refresh_time.strftime("%Y-%m-%d %H:%M:%S")
+
+	with open("ran_today.json", "w") as f:
+		json.dump(data, f)
 
 
 
@@ -274,7 +280,7 @@ def go_infrastructure():
 		time.sleep(1)
 		while(re == "success"):
 			last_clicked_location = []
-			re  = adb_controller.wait_to_match_and_click([r"template_images\layoff.png"],[0.2],False,1.5,0,scope =(120,720,1170,1235),accidents = settings.accidents,except_locs = matched_locs,chk_net = False, last_clicked_location = last_clicked_location)
+			re  = adb_controller.wait_to_match_and_click([r"template_images\layoff.png"],[0.1],False,1.5,0,scope =(120,720,1170,1235),accidents = settings.accidents,except_locs = matched_locs,chk_net = False, last_clicked_location = last_clicked_location)
 			# potential optimization for faster clicking red confirm with hard code corrd / layoff.png changed to swap
 			if(last_clicked_location != None):
 				# matched_locs.append(image_processor.last_match_loc)
@@ -307,7 +313,7 @@ def go_infrastructure():
 			
 
 		adb_controller.screenshot(r"temp_screenshot\last_screenshot.png")
-		adb_controller.instant_swipe((1000,600),(1000,150))
+		adb_controller.instant_swipe((1000,600),(1000,170))
 		adb_controller.instant_swipe((1000,600),(1001,600))
 
 		adb_controller.screenshot(r"temp_screenshot\screenshot.png")
