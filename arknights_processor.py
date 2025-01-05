@@ -54,8 +54,8 @@ def task_awareness(task):
 	last_run_str = data.get(str(task), "2000-01-01 00:00:00")
 	refresh_time = datetime.datetime.strptime(last_run_str, "%Y-%m-%d %H:%M:%S")
 	
-	return refresh_time >= time_now
-
+	return refresh_time <= time_now
+	#if task is not scheduled to run, return false, else true
 def update_task_time(task):
 	time_now = datetime.datetime.now()
 	try:
@@ -401,7 +401,7 @@ def go_infrastructure():
 	return "success"
 
 def go_visit_friends():
-	if not task_awareness("go_visit_friends"):
+	if task_awareness("go_visit_friends"):
 		print("Today has already done task")
 		return 0
 	print("ArknightsController:Start to visit friends  ....")
@@ -471,7 +471,7 @@ def go_collect_mail():
 	return "success"
 
 def go_shop():
-	if not task_awareness("go_shop"):
+	if task_awareness("go_shop"):
 		print("Today has already done task")
 		return 0
 	print("ArknightsController:Start to go shop  ....")
@@ -632,7 +632,6 @@ def go_shop():
 	return "success"
 
 def go_hire_crew():
-
 	# while (1):
 	# 	five_hire_tags= []
 	# 	best_combination = []
@@ -964,7 +963,7 @@ def go_clue_get_new_clue():
 
 
 def go_clue():
-	if not task_awareness("go_clue"):
+	if task_awareness("go_clue"):
 		print("Done task already today")
 		return 0
 	print("ArknightsController:Start to Go Clue -- Get in ....")

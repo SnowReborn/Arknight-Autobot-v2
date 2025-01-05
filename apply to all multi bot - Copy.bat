@@ -19,3 +19,4 @@ xcopy /y /e /h /i "E:\Code Base\Python Project\Arknight Autobot v2" "E:\Code Bas
 xcopy /y /e /h /i "E:\Code Base\Python Project\Arknight Autobot v2" "E:\Code Base\Python Project\Multi Arkbot\sam" /EXCLUDE:I:\exclusion.txt
 xcopy /y /e /h /i "E:\Code Base\Python Project\Arknight Autobot v2" "E:\Code Base\Python Project\Multi Arkbot\math" /EXCLUDE:I:\exclusion.txt
 xcopy /y /e /h /i "E:\Code Base\Python Project\Arknight Autobot v2" "E:\Code Base\Python Project\Multi Arkbot\bill" /EXCLUDE:I:\exclusion.txt
+pause
