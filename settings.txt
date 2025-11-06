@@ -2,16 +2,29 @@
 # 所以可以用#来写注释，或者使某行配置无效
 
 # adb.exe 的路径，夜神模拟器安装路径下的bin文件夹里面有,参照以下格式，修改双引号内的就ok
-adb_path = "E:\Games\Android Emulator\Memu v9\Microvirt\MEmu\adb.exe"
+#adb_path = "E:\Games\Android Emulator\Memu v9\Microvirt\MEmu\adb.exe"
 
+adb_path = "E:\Games\Android Emulator\MuMu emulator\nx_device\12.0\shell\adb.exe"
 # 模拟器的地址
-device_address = "127.0.0.1:22513" #default single
-main_address = "127.0.0.1:22513" #main
-chenrui_address = "127.0.0.1:22523" #chenrui
-connor_address = "127.0.0.1:22533" #connor
-sam_address = "127.0.0.1:22543" #sam
-math_address = "127.0.0.1:22553" #math
-bill_address = "127.0.0.1:22563" #bill
+#from memu
+#device_address = "127.0.0.1:22513" #default single
+#main_address = "127.0.0.1:22513" #main
+#chenrui_address = "127.0.0.1:22523" #chenrui
+#connor_address = "127.0.0.1:22533" #connor
+#sam_address = "127.0.0.1:22543" #sam
+#math_address = "127.0.0.1:22553" #math
+#bill_address = "127.0.0.1:22563" #bill
+
+
+#for mumu
+device_address = "emulator-5554" #default single
+main_address = "emulator-5554" #main
+chenrui_address = "emulator-5556" #chenrui
+connor_address = "emulator-5558" #connor
+sam_address = "emulator-5560" #sam
+math_address = "emulator-5562" #math
+bill_address = "emulator-5564" #bill
+
 
 
 

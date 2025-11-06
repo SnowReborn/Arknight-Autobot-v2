@@ -9,6 +9,7 @@ import settings
 os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
 last_match_loc = None
 
+#scope is (y min , y max, x min , x max)
 def match_template(target_path,template_path,threshold = 0.05,return_center = True
 					,print_debug = True,scope = None,except_locs = None):
 

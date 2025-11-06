@@ -328,6 +328,7 @@ def go_infrastructure():
 
 	print("ArknightsController:Get Out  ....")
 	## changing inffra 7 8 picture to retrofit new updated base system 2024-11-14 
+	re = adb_controller.wait_to_match_and_click([r"template_images\infrastructure69.png"],[0.1],True,5,0,settings.accidents)
 	re = adb_controller.wait_to_match_and_click([r"template_images\infrastructure7.png"],[0.1],True,5,0,settings.accidents)
 	print("ArknightsController:Get In  ....")
 	re  = adb_controller.wait_to_match_and_click([r"template_images\infrastructure8.png"],[0.1],True,5,0,accidents = settings.accidents)
@@ -401,9 +402,9 @@ def go_infrastructure():
 	return "success"
 
 def go_visit_friends():
-	if task_awareness("go_visit_friends"):
-		print("Today has already done task")
-		return 0
+	# if task_awareness("go_visit_friends"):
+	# 	print("Today has already done task")
+	# 	return 0
 	print("ArknightsController:Start to visit friends  ....")
 	re  = adb_controller.wait_to_match_and_click([r"template_images\friends1.png"],[0.1],True,8,2,settings.accidents)
 	if(re == "restart"):return re
@@ -471,9 +472,9 @@ def go_collect_mail():
 	return "success"
 
 def go_shop():
-	if task_awareness("go_shop"):
-		print("Today has already done task")
-		return 0
+	# if task_awareness("go_shop"):
+	# 	print("Today has already done task")
+	# 	return 0
 	print("ArknightsController:Start to go shop  ....")
 	re  = adb_controller.wait_to_match_and_click([r"template_images\shop1.png"],[0.1],True,5,2,settings.accidents)
 	if(re == "restart"):return re
@@ -671,7 +672,7 @@ def go_hire_crew():
 	# time.sleep(3)
 	print("ArknightsController:Try to collect crew  ....")
 	while(True):
-		re  = adb_controller.wait_to_match_and_click([r"template_images\hire2.png"],[0.1],True,3,0,settings.accidents)
+		re  = adb_controller.wait_to_match_and_click([r"template_images\hire2.png"],[0.15],True,3,0,settings.accidents)
 		if(re == "success"):
 			# time.sleep(2)
 			re2  = adb_controller.wait_to_match_and_click([r"template_images\hire3.png"],[0.1],True,3,0,settings.accidents)
@@ -909,7 +910,7 @@ def go_send_additional_clue():
 					break
 
 				re2 = adb_controller.wait_till_match_any(
-					[r"template_images\gclue14.png"],[0.01],True,2,0,scope = (68,633,819,1157) , except_locs = matched_locs)
+					[r"template_images\gclue14.png"],[0.1],True,2,0,scope = (68,633,819,1157) , except_locs = matched_locs)
 				
 				if(image_processor.last_match_loc != None):
 					matched_locs.append(image_processor.last_match_loc)
@@ -937,7 +938,8 @@ def go_send_additional_clue():
 				else:
 					if adb_controller.wait_till_match_any(
 					# [r"template_images\active_today.png", r"template_images\active_yesterday.png"],[0.01],True,5,0,scope = (140,640,700,835)):
-					[r"template_images\active_today.png", r"template_images\active_yesterday.png"],[0.015,0.015],True,1,0,scope = (int(re2[1]+50),int(re2[1])+130,700,835)):
+					#(re[1] < y1, y2, x1, x2)
+					[r"template_images\active_today.png", r"template_images\active_yesterday.png"],[0.015,0.015],True,1,0,scope = (int(re2[1]),int(re2[1])+130,600,835)):
 						adb_controller.click((1187,re2[1]))
 						
 					# break
@@ -963,9 +965,9 @@ def go_clue_get_new_clue():
 
 
 def go_clue():
-	if task_awareness("go_clue"):
-		print("Done task already today")
-		return 0
+	# if task_awareness("go_clue"):
+	# 	print("Done task already today")
+	# 	return 0
 	print("ArknightsController:Start to Go Clue -- Get in ....")
 	go_clue_get_in()
 
