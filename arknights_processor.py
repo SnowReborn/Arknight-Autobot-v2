@@ -433,7 +433,8 @@ def go_visit_friends():
 
 def go_collect_quests():
 	print("ArknightsController:Start to collect quest rewards  ....")
-	re  = adb_controller.wait_to_match_and_click([r"template_images\quest1.png"],[0.1],True,10,1,settings.accidents)
+	time.sleep(3)
+	re  = adb_controller.wait_to_match_and_click([r"template_images\quest1.png"],[0.03],True,10,1,settings.accidents)
 	if(re == "restart"):return re
 	# re  = adb_controller.wait_to_match_and_click([r"template_images\quest2.png"],[0.1],True,10,1,settings.accidents)
 	# if(re == "restart"):return re
